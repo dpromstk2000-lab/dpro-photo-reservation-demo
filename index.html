@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>DPRO PHOTO｜WEB予約デモ V1.6</title>
+<title>DPRO PHOTO｜WEB予約デモ V1.7</title>
 <style>
 :root{
   --bg:#f5f5f0;
@@ -122,9 +122,21 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .booking-price{font-weight:900;color:var(--ink)}.booking-price small{font-weight:700;color:var(--muted);margin-left:4px}.confirm-grid .price-confirm strong{font-size:20px}.history-price{font-size:12px;color:var(--muted)}
 @media(max-width:760px){.menu-photo{height:132px}.menu-photo span{font-size:21px}.menu-meta{display:block}.menu-meta .menu-price{display:inline-flex;margin-top:6px}.service-visual{min-height:190px}.complete-guide{grid-template-columns:1fr}.line-context{grid-template-columns:1fr}.complete-actions{display:grid;grid-template-columns:1fr}.complete-actions>*{width:100%}.toast{bottom:92px;width:calc(100% - 32px);text-align:center}}
 
+/* V1.7: operational UX / accessibility / options / draft persistence */
+.skip-link{position:fixed;left:12px;top:-80px;z-index:100;background:#111;color:#fff;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:900}.skip-link:focus{top:10px}
+button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.week-slot,.list-time button{min-height:44px}
+.required{display:inline-block;margin-left:7px;padding:1px 6px;border-radius:999px;background:var(--red-soft);color:var(--red);font-size:10px;font-weight:900;vertical-align:2px}
+.field-error{display:none;color:var(--red);font-size:12px;font-weight:800;margin-top:5px}.field-error.show{display:block}.form-grid input.invalid,.form-grid select.invalid,.form-grid textarea.invalid{border-color:var(--red);background:var(--red-soft)}
+.draft-notice{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px;padding:12px 14px;border:1px solid #dfe8bc;background:var(--lime-softer);border-radius:14px;font-size:12px;color:var(--muted)}.draft-notice button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font-weight:800;cursor:pointer;white-space:nowrap}
+.option-selector{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}.option-selector-head{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:10px}.option-selector-head b{font-size:15px}.option-selector-head span{font-size:11px;color:var(--muted)}.option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.option-card{display:grid!important;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff;cursor:pointer}.option-card:has(input:checked){border-color:var(--lime);background:var(--lime-softer)}.option-card input{width:19px;height:19px;accent-color:var(--lime-dark)}.option-card span b{display:block;font-size:13px}.option-card span small{display:block;color:var(--muted);font-size:10px;line-height:1.45}.option-card em{font-style:normal;font-size:12px;font-weight:900;white-space:nowrap}.price-breakdown{margin-top:10px;border-radius:12px;background:#171a18;color:#fff;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center}.price-breakdown span{font-size:11px;color:#d8ded8}.price-breakdown strong{font-size:18px}.price-breakdown small{grid-column:1/3;font-size:10px;color:#bfc7bf}.selected-options{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:700}.history-options{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.menu-photo.photo-loaded,.service-visual.photo-loaded{background-size:cover!important;background-position:center!important}.menu-photo.photo-loaded:after{background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.48))}.service-visual.photo-loaded:before{background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.34))}.service-visual.photo-loaded:after{content:"店舗写真"}
+@media(max-width:760px){.option-grid{grid-template-columns:1fr}.option-selector-head{display:block}.option-selector-head span{display:block;margin-top:4px}.draft-notice{display:block}.draft-notice button{margin-top:8px;width:100%}.selected-strip strong{display:block}.price-breakdown{grid-template-columns:1fr auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
 </style>
 </head>
 <body>
+<a class="skip-link" href="#menu">予約内容へ移動</a>
 <div class="demo-badge">DEMO｜予約は送信されません</div>
 <header class="header">
   <div class="logo"><div class="logo-mark">P</div><div><div class="logo-main">PICTURE</div><div class="logo-sub">DPRO PHOTO RESERVATION</div></div></div>
@@ -174,6 +186,16 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
             <button class="plan-option" data-plan="相談して決める"><b>相談して決める</b><small>プラン未定でも日時を確保し、LINEで事前相談できます。</small><span class="plan-price" data-plan-price="相談して決める">料金相談<small>予約前に確認</small></span><em>LINE相談と連携</em></button>
           </div>
           <div class="price-note">※ 表示料金はUI確認用のデモです。本番では店舗の実際の料金・キャンペーン・オプションへ連動します。</div>
+          <div class="option-selector">
+            <div class="option-selector-head"><b>追加オプション</b><span>必要なものだけ選択。予約前の見積目安へ反映します。</span></div>
+            <div class="option-grid">
+              <label class="option-card"><input type="checkbox" data-option="家族撮影" data-option-price="5500"><span><b>家族撮影</b><small>ご家族みんなでの撮影を追加</small></span><em>+¥5,500</em></label>
+              <label class="option-card"><input type="checkbox" data-option="兄弟撮影" data-option-price="3300"><span><b>兄弟撮影</b><small>きょうだいカットを追加</small></span><em>+¥3,300</em></label>
+              <label class="option-card"><input type="checkbox" data-option="衣装相談" data-option-price="0" checked><span><b>衣装相談</b><small>持込・レンタルを事前相談</small></span><em>¥0</em></label>
+              <label class="option-card"><input type="checkbox" data-option="ヘアメイク" data-option-price="8800"><span><b>ヘアメイク</b><small>事前に希望内容を受付</small></span><em>+¥8,800</em></label>
+            </div>
+            <div class="price-breakdown" aria-live="polite"><span>プラン・オプション合計</span><strong id="totalPrice">¥33,000（税込・デモ）</strong><small id="optionSummary">衣装相談</small></div>
+          </div>
         </div>
         <div class="service-points" id="servicePoints"></div>
         <div class="service-actions"><button class="btn primary" data-scroll="#quick">この撮影の空き時間を見る</button><button class="btn secondary" id="changeServiceBtn">別の撮影を選ぶ</button><button class="line-cta" data-line-consult>LINEでこの撮影を相談</button></div>
@@ -183,7 +205,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
   <section class="section panel booking" id="quick">
     <div class="booking-top"><div><div class="step-label">STEP 2</div><h2><span id="serviceTitle">七五三</span>の空き時間</h2></div><div class="segments"><button class="active" data-mode="quick">最短</button><button data-mode="weekend">土日</button><button data-mode="calendar">カレンダー</button></div></div>
-    <div class="selected-strip"><strong>選択中：<span id="selectedService">七五三</span> ／ <b id="selectedPlan">スタンダード</b></strong><span><span class="price-summary" id="selectedPrice">¥33,000（税込・デモ）</span>｜所要時間目安 <b id="selectedDuration">約120分</b>｜空いている枠だけ表示</span></div>
+    <div class="selected-strip" aria-live="polite"><strong>選択中：<span id="selectedService">七五三</span> ／ <b id="selectedPlan">スタンダード</b><small class="selected-options" id="selectedOptions">衣装相談</small></strong><span><span class="price-summary" id="selectedPrice">¥33,000（税込・デモ）</span>｜所要時間目安 <b id="selectedDuration">約120分</b>｜空いている枠だけ表示</span></div>
     <div class="change-banner hidden" id="changeBanner"><div><b>予約変更モード</b><br><span>新しい日時を選ぶだけで変更できます。お客様情報の再入力は不要です。</span></div><button id="cancelChangeMode">変更をやめる</button></div>
     <div class="help">○ 予約可　△ 残り1枠。過去日時は選べません。</div>
     <div class="slot-grid" id="slotGrid"></div>
@@ -203,7 +225,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
             </div>
           </div>
           <div class="legend"><span class="legend-item"><i class="dot d-ok"></i>予約可</span><span class="legend-item"><i class="dot d-few"></i>残りわずか</span><span class="legend-item"><i class="dot d-full"></i>受付終了</span><span class="legend-item"><i class="dot d-past"></i>過去日</span></div>
-          <div class="month-caption"><b>V1.6</b><span>料金表示・LINE相談・予約完了後の案内まで、予約前後の体験を標準化。</span><span class="calendar-stat">この月の空き枠 <b id="monthSlotCount">0</b>件</span></div>
+          <div class="month-caption"><b>V1.7</b><span>オプション・入力保存・エラー案内・写真差し替え方式まで、実運用UXを標準化。</span><span class="calendar-stat">この月の空き枠 <b id="monthSlotCount">0</b>件</span></div>
         </div>
         <div class="cal-view active" id="calViewMonth"><div class="desktop-month" id="desktopMonth"></div><div class="mobile-month" id="mobileMonth"></div></div>
         <div class="cal-view" id="calViewWeek"><div class="week-grid" id="weekGrid"></div></div>
@@ -216,20 +238,29 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <section class="section panel form-panel hidden" id="formView">
     <div class="progress"><span class="done">1 撮影内容</span><span class="done">2 日時</span><span class="active">3 お客様情報</span><span>4 確認</span><span>5 完了</span></div>
     <div class="form-head"><div><div class="step-label">STEP 3</div><h2>お客様情報</h2></div><div class="summary"><b id="summaryService">七五三</b><small id="summaryPlan">スタンダード</small><small id="summaryPrice">¥33,000（税込・デモ）</small><span id="summaryTime">2026/10/10 10:00</span></div></div>
-    <div class="form-grid">
-      <label>保護者さまのお名前<input value="山田 花子"></label><label>電話番号<input inputmode="tel" value="090-1234-5678"></label><label>メールアドレス<input inputmode="email" value="sample@example.com"></label><label>LINE連携<select><option>予約後に連携する</option><option>連携済み</option></select></label><label>お子様のお名前<input value="山田 美咲"></label><label>生年月日<input type="date" value="2019-05-12"></label><label>主役人数<select><option>1名</option><option>2名</option><option>3名以上</option></select></label><label>衣装<select><option>相談したい</option><option>持ち込み</option><option>レンタル希望</option></select></label><label class="wide">ご要望・ご相談<textarea placeholder="兄弟撮影、衣装、ヘアメイクなど"></textarea></label>
+    <div class="draft-notice" id="draftNotice">入力内容はこの端末に一時保存されます。途中で閉じても、同じ端末なら続きから再開できます。<button type="button" id="clearDraft">入力内容を消す</button></div>
+    <div class="form-grid" id="reservationForm">
+      <label>保護者さまのお名前<span class="required">必須</span><input id="guardianName" name="guardianName" autocomplete="name" required value="山田 花子"><small class="field-error" data-error-for="guardianName"></small></label>
+      <label>電話番号<span class="required">必須</span><input id="phone" name="phone" inputmode="tel" autocomplete="tel" required value="090-1234-5678"><small class="field-error" data-error-for="phone"></small></label>
+      <label>メールアドレス<span class="required">必須</span><input id="email" name="email" inputmode="email" autocomplete="email" required value="sample@example.com"><small class="field-error" data-error-for="email"></small></label>
+      <label>LINE連携<select id="lineLink" name="lineLink"><option>予約後に連携する</option><option>連携済み</option><option>利用しない</option></select></label>
+      <label>お子様のお名前<span class="required">必須</span><input id="childName" name="childName" autocomplete="off" required value="山田 美咲"><small class="field-error" data-error-for="childName"></small></label>
+      <label>生年月日<span class="required">必須</span><input id="birthDate" name="birthDate" type="date" required value="2019-05-12"><small class="field-error" data-error-for="birthDate"></small></label>
+      <label>主役人数<select id="mainCount" name="mainCount"><option>1名</option><option>2名</option><option>3名以上</option></select></label>
+      <label>衣装<select id="costume" name="costume"><option>相談したい</option><option>持ち込み</option><option>レンタル希望</option></select></label>
+      <label class="wide">ご要望・ご相談<textarea id="requests" name="requests" placeholder="兄弟撮影、衣装、ヘアメイクなど"></textarea></label>
     </div>
-    <div class="form-actions"><button class="btn secondary" data-view="quick">戻る</button><button class="btn primary" data-view="confirm">確認画面へ</button></div>
+    <div class="form-actions"><button class="btn secondary" data-view="quick">戻る</button><button class="btn primary" id="toConfirmBtn">確認画面へ</button></div>
   </section>
 
-  <section class="section panel confirm-panel hidden" id="confirmView"><div class="progress"><span class="done">1 撮影内容</span><span class="done">2 日時</span><span class="done">3 お客様情報</span><span class="active">4 確認</span><span>5 完了</span></div><div class="step-label">STEP 4</div><h2>予約内容の確認</h2><div class="confirm-grid"><div><small>撮影内容</small><strong id="confirmService">七五三</strong></div><div><small>撮影プラン</small><strong id="confirmPlan">スタンダード</strong></div><div><small>日時</small><strong id="confirmTime">2026/10/10 10:00</strong></div><div><small>お客様</small><strong>山田 花子さま</strong></div><div><small>お子様</small><strong>山田 美咲さま</strong></div><div><small>所要時間目安</small><strong id="confirmDuration">約120分</strong></div><div class="price-confirm"><small>料金</small><strong id="confirmPrice">¥33,000（税込・デモ）</strong></div></div><div class="notice">本ページは操作確認用デモです。実際の予約・LINE送信・メール送信・決済は行われません。本番版では予約確認画面から、個人情報を再入力せずに日時変更・キャンセルを行える設計です。</div><div class="form-actions"><button class="btn secondary" data-view="form">内容を修正</button><button class="btn primary" data-view="complete">デモ予約を確定する</button></div></section>
+  <section class="section panel confirm-panel hidden" id="confirmView"><div class="progress"><span class="done">1 撮影内容</span><span class="done">2 日時</span><span class="done">3 お客様情報</span><span class="active">4 確認</span><span>5 完了</span></div><div class="step-label">STEP 4</div><h2>予約内容の確認</h2><div class="confirm-grid"><div><small>撮影内容</small><strong id="confirmService">七五三</strong></div><div><small>撮影プラン</small><strong id="confirmPlan">スタンダード</strong></div><div><small>追加オプション</small><strong id="confirmOptions">衣装相談</strong></div><div><small>日時</small><strong id="confirmTime">2026/10/10 10:00</strong></div><div><small>お客様</small><strong id="confirmGuardian">山田 花子さま</strong></div><div><small>お子様</small><strong id="confirmChild">山田 美咲さま</strong></div><div><small>所要時間目安</small><strong id="confirmDuration">約120分</strong></div><div class="price-confirm"><small>料金目安</small><strong id="confirmPrice">¥33,000（税込・デモ）</strong></div></div><div class="notice">本ページは操作確認用デモです。実際の予約・LINE送信・メール送信・決済は行われません。本番版では予約確認画面から、個人情報を再入力せずに日時変更・キャンセルを行える設計です。</div><div class="form-actions"><button class="btn secondary" data-view="form">内容を修正</button><button class="btn primary" id="completeBookingBtn">デモ予約を確定する</button></div></section>
 
-  <section class="section panel complete-panel hidden" id="completeView"><div class="check">✓</div><div class="step-label">RESERVATION COMPLETE</div><h2>デモ予約が完了しました</h2><p>デモ予約番号 <b>DPR-DEMO-001</b></p><div class="complete-pills"><span id="completeService">七五三</span><span id="completePlan">スタンダード</span><span id="completePrice">¥33,000（税込・デモ）</span><span id="completeTime">2026/10/10 10:00</span></div><div class="complete-guide"><div><b>1. LINEに保存</b><span>予約番号・日時をLINEからすぐ確認できる導線を標準化。</span></div><div><b>2. 来店前の案内</b><span>持ち物・衣装・駐車場などを店舗設定から表示できます。</span></div><div><b>3. 変更もかんたん</b><span>個人情報を再入力せず、空き枠を選び直すだけで変更できます。</span></div></div><div class="complete-actions"><button class="line-btn" data-line-consult>LINEに予約情報を保存・相談</button><button class="calendar-download" id="downloadIcs">カレンダーに追加</button><button class="btn secondary" data-view="history">予約確認・変更へ</button></div></section>
+  <section class="section panel complete-panel hidden" id="completeView"><div class="check">✓</div><div class="step-label">RESERVATION COMPLETE</div><h2>デモ予約が完了しました</h2><p>デモ予約番号 <b>DPR-DEMO-001</b></p><div class="complete-pills"><span id="completeService">七五三</span><span id="completePlan">スタンダード</span><span id="completeOptions">衣装相談</span><span id="completePrice">¥33,000（税込・デモ）</span><span id="completeTime">2026/10/10 10:00</span></div><div class="complete-guide"><div><b>1. LINEに保存</b><span>予約番号・日時をLINEからすぐ確認できる導線を標準化。</span></div><div><b>2. 来店前の案内</b><span>持ち物・衣装・駐車場などを店舗設定から表示できます。</span></div><div><b>3. 変更もかんたん</b><span>個人情報を再入力せず、空き枠を選び直すだけで変更できます。</span></div></div><div class="complete-actions"><button class="line-btn" data-line-consult>LINEに予約情報を保存・相談</button><button class="calendar-download" id="downloadIcs">カレンダーに追加</button><button class="btn secondary" data-view="history">予約確認・変更へ</button></div></section>
 
   <section class="section panel history-panel hidden" id="historyView">
     <div class="step-label">MY RESERVATION</div><h2>予約確認・撮影履歴</h2>
     <div class="history-item current" id="currentReservation">
-      <div class="history-main"><div class="status-row"><span class="status-badge" id="reservationStatus">予約確定</span><span class="history-note">変更・キャンセルはここから</span></div><b id="historyTime">2026/10/10 10:00</b><span id="historyService">七五三 ／ スタンダード</span><small class="history-price" id="historyPrice">¥33,000（税込・デモ）</small><small class="history-note">予約番号 DPR-DEMO-001</small></div>
+      <div class="history-main"><div class="status-row"><span class="status-badge" id="reservationStatus">予約確定</span><span class="history-note">変更・キャンセルはここから</span></div><b id="historyTime">2026/10/10 10:00</b><span id="historyService">七五三 ／ スタンダード</span><small class="history-options" id="historyOptions">衣装相談</small><small class="history-price" id="historyPrice">¥33,000（税込・デモ）</small><small class="history-note">予約番号 DPR-DEMO-001</small></div>
       <div class="history-actions"><button id="changeBookingBtn">日時を変更</button><button class="danger" id="cancelBookingBtn">キャンセル</button></div>
     </div>
     <div class="history-item"><div><b>2024/11/03</b><span>3歳 七五三</span></div><div><small>撮影済み</small></div></div>
@@ -248,8 +279,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 <div class="modal-backdrop hidden" id="lineModal" role="dialog" aria-modal="true" aria-labelledby="lineModalTitle">
   <div class="modal-card"><div class="step-label">LINE CONSULTATION</div><h3 id="lineModalTitle">LINEで相談する</h3><p>現在選んでいる撮影内容を引き継いで相談できます。本番版では店舗のLINE公式へ接続します。</p><div class="line-context"><div><small>撮影</small><b id="lineService">七五三</b></div><div><small>プラン</small><b id="linePlan">スタンダード</b></div><div><small>料金目安</small><b id="linePrice">¥33,000</b></div></div><b style="font-size:13px">相談したい内容</b><div class="consult-chips"><button class="consult-chip active" data-consult="料金・プラン">料金・プラン</button><button class="consult-chip" data-consult="衣装">衣装</button><button class="consult-chip" data-consult="空き時間">空き時間</button><button class="consult-chip" data-consult="その他">その他</button></div><div class="consult-preview" id="consultPreview">七五三／スタンダードについて、料金・プランを相談したいです。</div><div class="modal-actions"><button data-close-modal="lineModal">戻る</button><button class="primary" id="openLineDemo">LINE相談画面を開く（デモ）</button></div></div>
 </div>
-<div class="toast" id="toast">デモ：LINE連携を確認しました</div>
-<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準デモ V1.6</span></footer>
+<div class="toast" id="toast" role="status" aria-live="polite">デモ：LINE連携を確認しました</div>
+<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準デモ V1.7</span></footer>
 <nav class="mobilebar"><button data-scroll="#menu">メニュー</button><button class="accent" data-view="quick">予約する</button><button data-line-consult>LINE相談</button></nav>
 <script>
 const views={quick:document.getElementById('quick'),form:document.getElementById('formView'),confirm:document.getElementById('confirmView'),complete:document.getElementById('completeView'),history:document.getElementById('historyView')};
@@ -257,8 +288,12 @@ const DEMO_TODAY=new Date(2026,9,5); // 2026-10-05 固定デモ基準日
 const MIN_MONTH=new Date(2026,8,1);   // 2026-09
 const MAX_MONTH=new Date(2027,3,1);   // 2027-04
 let service='七五三',duration=120,time='2026/10/10 10:00',plan='スタンダード';
+let selectedOptions=new Map([['衣装相談',0]]);
 const basePrices={'お宮参り・赤ちゃん':[16500,27500],'七五三':[22000,33000],'バースデー':[16500,27500],'入園・入学':[16500,27500],'成人式・卒業':[33000,49500],'その他記念':[16500,27500]};
-function currentPrice(){if(plan==='相談して決める') return null; const p=basePrices[service]||[16500,27500]; return plan==='シンプル'?p[0]:p[1]}
+function currentBasePrice(){if(plan==='相談して決める') return null; const p=basePrices[service]||[16500,27500]; return plan==='シンプル'?p[0]:p[1]}
+function optionTotal(){return [...selectedOptions.values()].reduce((a,b)=>a+Number(b||0),0)}
+function currentPrice(){const base=currentBasePrice(); return base===null?null:base+optionTotal()}
+function optionsText(){return selectedOptions.size?[...selectedOptions.keys()].join('・'):'なし'}
 function priceText(short=false){const p=currentPrice(); if(p===null) return short?'料金相談':'料金相談（予約前に確認）'; return '¥'+p.toLocaleString('ja-JP')+(short?'':'（税込・デモ）')}
 
 let isChanging=false,pendingChangeTime='';
@@ -337,7 +372,9 @@ function sync(){
  document.querySelectorAll('[data-plan-price="シンプル"]').forEach(el=>el.innerHTML='¥'+pp['シンプル'].toLocaleString('ja-JP')+'<small>税込・デモ料金</small>');
  document.querySelectorAll('[data-plan-price="スタンダード"]').forEach(el=>el.innerHTML='¥'+pp['スタンダード'].toLocaleString('ja-JP')+'<small>税込・デモ料金</small>');
  document.querySelectorAll('[data-plan-price="相談して決める"]').forEach(el=>el.innerHTML='料金相談<small>予約前に確認</small>');
- const idsPrice=['selectedPrice','summaryPrice','confirmPrice','completePrice','historyPrice']; idsPrice.forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=priceText(false)});
+ const idsPrice=['selectedPrice','summaryPrice','confirmPrice','completePrice','historyPrice','totalPrice']; idsPrice.forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=priceText(false)});
+ const opt=optionsText(); ['selectedOptions','confirmOptions','completeOptions','historyOptions','optionSummary'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=opt});
+ const gn=document.getElementById('guardianName'); const cn=document.getElementById('childName'); if(gn){const el=document.getElementById('confirmGuardian');if(el)el.textContent=(gn.value.trim()||'未入力')+'さま'} if(cn){const el=document.getElementById('confirmChild');if(el)el.textContent=(cn.value.trim()||'未入力')+'さま'}
  ['lineService'].forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=service}); ['linePlan'].forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=plan}); const lp=document.getElementById('linePrice'); if(lp) lp.textContent=priceText(true);
 
 }
@@ -347,9 +384,10 @@ function setBookingMode(mode='quick'){
  if(mode==='calendar'){cal.classList.remove('hidden');grid.classList.add('hidden');renderCalendar()}
  else{cal.classList.add('hidden');grid.classList.remove('hidden');renderQuick(mode)}
 }
+function focusView(v){if(!v)return;v.setAttribute('tabindex','-1');v.focus({preventScroll:true});setTimeout(()=>v.removeAttribute('tabindex'),400)}
 function show(name){
- if(name==='quick'){Object.entries(views).forEach(([k,v])=>{if(k!=='quick')v.classList.add('hidden')});views.quick.classList.remove('hidden');setBookingMode('quick');views.quick.scrollIntoView({behavior:'smooth',block:'start'});return}
- Object.values(views).forEach(v=>v.classList.add('hidden'));views[name]?.classList.remove('hidden');views[name]?.scrollIntoView({behavior:'smooth',block:'start'});
+ if(name==='quick'){Object.entries(views).forEach(([k,v])=>{if(k!=='quick')v.classList.add('hidden')});views.quick.classList.remove('hidden');setBookingMode('quick');views.quick.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>focusView(views.quick),250);return}
+ Object.values(views).forEach(v=>v.classList.add('hidden'));views[name]?.classList.remove('hidden');views[name]?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>focusView(views[name]),250);
 }
 function chooseTime(date,timeText){
  const next=`${iso(date).replaceAll('-','/')} ${timeText}`; selectedDate=new Date(date);currentMonth=new Date(date.getFullYear(),date.getMonth(),1);
@@ -422,6 +460,23 @@ function setMonthToToday(){currentMonth=new Date(DEMO_TODAY.getFullYear(),DEMO_T
 function setCalView(view){calView=view;renderCalendar()}
 function setSelectedDate(isoText,switchToDay=false){const [y,m,d]=isoText.split('-').map(Number);selectedDate=new Date(y,m-1,d);currentMonth=new Date(y,m-1,1);if(switchToDay)calView='day';renderCalendar()}
 
+const PHOTO_CONFIG={
+ 'お宮参り・赤ちゃん':'',
+ '七五三':'',
+ 'バースデー':'',
+ '入園・入学':'',
+ '成人式・卒業':'',
+ 'その他記念':''
+};
+function applyPhotoAssets(){document.querySelectorAll('[data-service]').forEach(card=>{const url=PHOTO_CONFIG[card.dataset.service];const ph=card.querySelector('.menu-photo');if(url&&ph){ph.style.backgroundImage=`linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.48)),url("${url}")`;ph.classList.add('photo-loaded')}});const url=PHOTO_CONFIG[service];const sv=document.getElementById('serviceVisual');if(sv){sv.classList.toggle('photo-loaded',!!url);sv.style.backgroundImage=url?`linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.34)),url("${url}")`:''}}
+const DRAFT_KEY='dpro_photo_v17_draft';
+const draftFields=['guardianName','phone','email','lineLink','childName','birthDate','mainCount','costume','requests'];
+function saveDraft(){const data={};draftFields.forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value});try{localStorage.setItem(DRAFT_KEY,JSON.stringify(data))}catch(e){}}
+function restoreDraft(){try{const raw=localStorage.getItem(DRAFT_KEY);if(!raw)return;const data=JSON.parse(raw);draftFields.forEach(id=>{const el=document.getElementById(id);if(el&&data[id]!=null)el.value=data[id]});sync()}catch(e){}}
+function clearDraft(){try{localStorage.removeItem(DRAFT_KEY)}catch(e){};draftFields.forEach(id=>{const el=document.getElementById(id);if(!el)return;if(el.tagName==='TEXTAREA')el.value=''});document.getElementById('guardianName').value='';document.getElementById('phone').value='';document.getElementById('email').value='';document.getElementById('childName').value='';document.getElementById('birthDate').value='';sync()}
+function normalizePhoneValue(v){let x=(v||'').replace(/[－ー−―‐\s()]/g,'').replace(/-/g,'');if(x.startsWith('+81'))x='0'+x.slice(3);if(x.startsWith('0081'))x='0'+x.slice(4);return x}
+function setFieldError(id,msg=''){const el=document.getElementById(id),err=document.querySelector(`[data-error-for="${id}"]`);if(el)el.classList.toggle('invalid',!!msg);if(err){err.textContent=msg;err.classList.toggle('show',!!msg)}}
+function validateForm(){let ok=true;const name=document.getElementById('guardianName').value.trim(),phone=normalizePhoneValue(document.getElementById('phone').value),email=document.getElementById('email').value.trim(),child=document.getElementById('childName').value.trim(),birth=document.getElementById('birthDate').value;document.getElementById('phone').value=phone;[['guardianName',name?'':'お名前を入力してください'],['childName',child?'':'お子様のお名前を入力してください'],['birthDate',birth?'':'生年月日を入力してください']].forEach(([id,msg])=>{setFieldError(id,msg);if(msg)ok=false});let pmsg=/^0\d{9,10}$/.test(phone)?'':'電話番号を確認してください（+81入力も0始まりへ自動変換します）';setFieldError('phone',pmsg);if(pmsg)ok=false;let emsg=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)?'':'メールアドレスを確認してください';setFieldError('email',emsg);if(emsg)ok=false;if(!ok){document.querySelector('.field-error.show')?.closest('label')?.querySelector('input,select,textarea')?.focus()}return ok}
 document.getElementById('monthSelect')?.addEventListener('change',e=>{const [y,m]=e.target.value.split('-').map(Number);currentMonth=new Date(y,m-1,1);selectedDate=new Date(y,m-1,1);renderCalendar()});
 document.getElementById('changeServiceBtn')?.addEventListener('click',()=>document.getElementById('menu').scrollIntoView({behavior:'smooth',block:'start'}));
 
@@ -433,12 +488,19 @@ document.addEventListener('click',e=>{
 });
 document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>document.querySelector(b.dataset.scroll)?.scrollIntoView({behavior:'smooth'})));
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
-document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>{service=b.dataset.service;duration=Number(b.dataset.duration||120);document.querySelectorAll('[data-service]').forEach(x=>x.classList.remove('active'));b.classList.add('active');sync();renderQuick('quick');renderCalendar();show('quick')}));
+document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>{service=b.dataset.service;duration=Number(b.dataset.duration||120);document.querySelectorAll('[data-service]').forEach(x=>x.classList.remove('active'));b.classList.add('active');sync();applyPhotoAssets();renderQuick('quick');renderCalendar();show('quick')}));
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setBookingMode(b.dataset.mode)));
 document.querySelectorAll('[data-cal-view]').forEach(b=>b.addEventListener('click',()=>setCalView(b.dataset.calView)));
 document.getElementById('prevMonth').addEventListener('click',()=>shiftMonth(-1));document.getElementById('nextMonth').addEventListener('click',()=>shiftMonth(1));document.getElementById('todayMonth').addEventListener('click',setMonthToToday);
 
 document.querySelectorAll('[data-plan]').forEach(b=>b.addEventListener('click',()=>{plan=b.dataset.plan;document.querySelectorAll('[data-plan]').forEach(x=>x.classList.remove('active'));b.classList.add('active');sync()}));
+document.querySelectorAll('[data-option]').forEach(cb=>cb.addEventListener('change',()=>{if(cb.checked)selectedOptions.set(cb.dataset.option,Number(cb.dataset.optionPrice||0));else selectedOptions.delete(cb.dataset.option);sync()}));
+draftFields.forEach(id=>document.getElementById(id)?.addEventListener('input',()=>{saveDraft();sync()}));
+document.getElementById('phone')?.addEventListener('blur',e=>{e.target.value=normalizePhoneValue(e.target.value);saveDraft()});
+document.getElementById('clearDraft')?.addEventListener('click',()=>{clearDraft();const t=document.getElementById('toast');t.textContent='入力途中の内容を消しました';t.classList.add('show');setTimeout(()=>{t.classList.remove('show');t.textContent='デモ：LINE連携を確認しました'},1800)});
+document.getElementById('toConfirmBtn')?.addEventListener('click',()=>{if(validateForm()){saveDraft();sync();show('confirm')}});
+document.getElementById('completeBookingBtn')?.addEventListener('click',()=>{try{localStorage.removeItem(DRAFT_KEY)}catch(e){};sync();show('complete')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop:not(.hidden)').forEach(m=>closeModal(m.id))});
 function closeModal(id){document.getElementById(id)?.classList.add('hidden')}
 document.querySelectorAll('[data-close-modal]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.closeModal)));
 document.getElementById('changeBookingBtn')?.addEventListener('click',()=>{isChanging=true;document.getElementById('changeBanner').classList.remove('hidden');show('quick');document.getElementById('changeBanner').classList.remove('hidden')});
@@ -458,7 +520,7 @@ document.querySelectorAll('[data-consult]').forEach(b=>b.addEventListener('click
 document.getElementById('openLineDemo').addEventListener('click',()=>{document.getElementById('lineModal').classList.add('hidden');const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)});
 document.getElementById('downloadIcs').addEventListener('click',()=>{const m=time.match(/(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2})/);if(!m)return;const [_,y,mo,d,h,mi]=m;const start=`${y}${mo}${d}T${h}${mi}00`;const endDate=new Date(Number(y),Number(mo)-1,Number(d),Number(h),Number(mi)+duration);const end=`${endDate.getFullYear()}${pad(endDate.getMonth()+1)}${pad(endDate.getDate())}T${pad(endDate.getHours())}${pad(endDate.getMinutes())}00`;const ics=`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//DPRO PHOTO//JP\r\nBEGIN:VEVENT\r\nDTSTART:${start}\r\nDTEND:${end}\r\nSUMMARY:${service} ${plan}（DPRO PHOTO DEMO）\r\nDESCRIPTION:予約番号 DPR-DEMO-001 / ${priceText(false)}\r\nEND:VEVENT\r\nEND:VCALENDAR`;const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='DPRO_PHOTO_DEMO_RESERVATION.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 
-populateMonthSelect();renderQuick();renderCalendar();sync();
+populateMonthSelect();restoreDraft();renderQuick();renderCalendar();sync();applyPhotoAssets();
 </script>
 </body>
 </html>
