@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>DPRO PHOTO｜WEB予約デモ V1.8</title>
+<title>DPRO PHOTO｜WEB予約デモ V1.9</title>
 <style>
 :root{
   --bg:#f5f5f0;
@@ -133,7 +133,7 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
 @media(max-width:760px){.option-grid{grid-template-columns:1fr}.option-selector-head{display:block}.option-selector-head span{display:block;margin-top:4px}.draft-notice{display:block}.draft-notice button{margin-top:8px;width:100%}.selected-strip strong{display:block}.price-breakdown{grid-template-columns:1fr auto}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 
-/* V1.8: mobile reservation summary / price detail / stronger modal UX */
+/* V1.9: mobile reservation summary / price detail / stronger modal UX */
 .inline-detail-btn{border:0;background:transparent;color:var(--lime-dark);font-weight:900;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:5px 4px;min-height:34px}
 .price-detail-list{margin:16px 0 0;display:grid;gap:8px}.price-detail-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}.price-detail-row span{color:var(--muted);font-size:13px}.price-detail-row b{font-size:14px}.price-detail-total{display:flex;justify-content:space-between;align-items:center;background:#171a18;color:#fff;padding:14px 16px;border-radius:13px;margin-top:12px}.price-detail-total span{font-size:12px;color:#d9ded9}.price-detail-total strong{font-size:20px}
 .summary-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.summary-detail-grid>div{border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff}.summary-detail-grid small{display:block;color:var(--muted);font-size:10px}.summary-detail-grid b{display:block;font-size:14px;margin-top:3px}.summary-detail-grid .wide-row{grid-column:1/3;background:var(--lime-softer);border-color:#dfe8bc}
@@ -145,6 +145,12 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
  .summary-detail-grid{grid-template-columns:1fr}.summary-detail-grid .wide-row{grid-column:auto}.price-detail-total strong{font-size:18px}
  .mobile-date-slots button b,.mobile-date-slots button{font-size:16px!important}.mobile-date-head strong{font-size:19px!important}
 }
+
+/* V1.9: final front UX / reassurance / photo-ready polish */
+.menu-photo{height:170px;isolation:isolate}.menu-photo:before{content:"";position:absolute;inset:0;z-index:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}.menu-photo span{font-size:25px;letter-spacing:.01em}.menu-card:hover .menu-photo{transform:scale(1.008)}.menu-photo{transition:transform .2s ease,filter .2s ease}.menu-meta .menu-price{font-weight:900;color:var(--ink)}
+.confirm-lead{margin:-2px 0 18px;color:var(--muted);font-size:14px;line-height:1.75}.confirm-detail{display:block;margin-top:7px;border:0;background:transparent;color:var(--lime-dark);font-weight:900;text-decoration:underline;text-underline-offset:3px;padding:3px 0;cursor:pointer}.assurance-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}.assurance-grid>div{border:1px solid var(--line);border-radius:13px;padding:13px 14px;background:#fbfcf9}.assurance-grid b{display:block;font-size:13px}.assurance-grid span{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.55}.policy-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:13px;background:#fff}.policy-row button{border:0;background:transparent;color:var(--ink);font-weight:900;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.policy-row span{font-size:11px;color:var(--muted)}.final-consent{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;margin:16px 0 2px;padding:14px;border:1px solid #dfe8bc;border-radius:13px;background:var(--lime-softer);cursor:pointer}.final-consent input{width:21px;height:21px;accent-color:var(--lime-dark);margin-top:1px}.final-consent b{display:block;font-size:13px}.final-consent small{display:block;color:var(--muted);font-size:11px;line-height:1.55;margin-top:3px}.btn:disabled,.modal-actions button:disabled{opacity:.45;cursor:not-allowed;transform:none!important}.policy-list{display:grid;gap:9px;margin:15px 0}.policy-list>div{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbfcfa}.policy-list b{display:block;font-size:13px}.policy-list span{display:block;color:var(--muted);font-size:12px;line-height:1.6;margin-top:4px}.save-status{margin-left:auto;border-radius:999px;padding:5px 9px;background:#fff;color:var(--lime-dark);font-weight:900;font-size:10px;white-space:nowrap}.draft-notice.saved .save-status:before{content:"✓ ";}.slot small.status-ok{color:var(--lime-dark);font-weight:800}
+@media(max-width:760px){.menu-photo{height:148px}.assurance-grid{grid-template-columns:1fr}.policy-row{align-items:flex-start;flex-direction:column}.final-consent{margin-bottom:8px}.save-status{display:inline-block;margin:8px 8px 0 0}.draft-notice .save-status+button{margin-top:8px}.menu-photo span{font-size:22px}}
+@media(prefers-contrast:more){:root{--line:#aeb6ad;--muted:#454a45}.btn.primary,.view-switch button.active{outline:2px solid #000}.menu-card.active{outline-width:3px}}
 
 </style>
 </head>
@@ -174,7 +180,7 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
   </section>
 
   <section class="section" id="menu">
-    <div class="section-head"><div><div class="step-label">STEP 1</div><h2>何を撮りますか？</h2></div><p>まず撮影内容を選びます。写真館ごとの写真・ロゴ・ブランドカラーに差し替えられるDPRO標準設計です。</p></div>
+    <div class="section-head"><div><div class="step-label">STEP 1</div><h2>何を撮りますか？</h2></div><p>まず撮影内容を選びます。実写真に差し替えても文字が埋もれない、写真館向けの標準カード設計です。</p></div>
     <div class="menu-grid">
       <button class="menu-card" data-service="お宮参り・赤ちゃん" data-duration="120"><div class="menu-photo m-baby"><span>Baby</span></div><div class="menu-meta"><strong>お宮参り・赤ちゃん</strong><small>Newborn / Baby</small><span class="menu-price">¥16,500〜</span></div></button>
       <button class="menu-card active" data-service="七五三" data-duration="120"><div class="menu-photo m-753"><span>七五三</span></div><div class="menu-meta"><strong>七五三</strong><small>3・5・7歳</small><span class="menu-price">¥22,000〜</span></div></button>
@@ -192,7 +198,7 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
         <div class="service-info-top"><div><h3>選んだ撮影内容を確認</h3><p class="service-copy" id="guideCopy">衣装・家族撮影・兄弟撮影など、予約前に相談できる設計です。店舗ごとの実際の写真・説明へ差し替えられます。</p></div></div>
         <div class="service-chips"><span class="service-chip">所要 <b id="guideDuration">約120分</b></span><span class="service-chip">会員登録なしで予約可</span><span class="service-chip">LINE相談対応</span></div>
         <div class="plan-selector">
-          <div class="plan-selector-head"><b>撮影プランを選ぶ</b><span>プラン名・内容・料金は店舗設定から自動表示できます</span></div>
+          <div class="plan-selector-head"><b>撮影プランを選ぶ</b><span>プラン名・内容・料金は店舗設定から自動表示。写真と料金を見ながら迷わず選べます</span></div>
           <div class="plan-options">
             <button class="plan-option" data-plan="シンプル"><b>シンプル</b><small>まず撮影を予約したい方向け。必要項目だけで短く進めます。</small><span class="plan-price" data-plan-price="シンプル">¥22,000<small>税込・デモ料金</small></span><em>撮影中心</em></button>
             <button class="plan-option active" data-plan="スタンダード"><b>スタンダード</b><small>衣装・家族撮影などの相談項目も一緒に受付。</small><span class="plan-price" data-plan-price="スタンダード">¥33,000<small>税込・デモ料金</small></span><em>おすすめ</em></button>
@@ -238,7 +244,7 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
             </div>
           </div>
           <div class="legend"><span class="legend-item"><i class="dot d-ok"></i>予約可</span><span class="legend-item"><i class="dot d-few"></i>残りわずか</span><span class="legend-item"><i class="dot d-full"></i>受付終了</span><span class="legend-item"><i class="dot d-past"></i>過去日</span></div>
-          <div class="month-caption"><b>V1.8</b><span>選択内容サマリー・料金内訳・モーダル操作・予約途中状態保存まで、モバイル実運用UXを強化。</span><span class="calendar-stat">この月の空き枠 <b id="monthSlotCount">0</b>件</span></div>
+          <div class="month-caption"><b>V1.9</b><span>写真差し替え設計・最終確認の安心情報・規定確認・保存状態表示まで、本番前フロントUXを仕上げ。</span><span class="calendar-stat">この月の空き枠 <b id="monthSlotCount">0</b>件</span></div>
         </div>
         <div class="cal-view active" id="calViewMonth"><div class="desktop-month" id="desktopMonth"></div><div class="mobile-month" id="mobileMonth"></div></div>
         <div class="cal-view" id="calViewWeek"><div class="week-grid" id="weekGrid"></div></div>
@@ -251,7 +257,7 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
   <section class="section panel form-panel hidden" id="formView">
     <div class="progress"><span class="done">1 撮影内容</span><span class="done">2 日時</span><span class="active">3 お客様情報</span><span>4 確認</span><span>5 完了</span></div>
     <div class="form-head"><div><div class="step-label">STEP 3</div><h2>お客様情報</h2></div><div class="summary"><b id="summaryService">七五三</b><small id="summaryPlan">スタンダード</small><small id="summaryPrice">¥33,000（税込・デモ）</small><span id="summaryTime">2026/10/10 10:00</span></div></div>
-    <div class="draft-notice" id="draftNotice">入力内容はこの端末に一時保存されます。途中で閉じても、同じ端末なら続きから再開できます。<button type="button" id="clearDraft">入力内容を消す</button></div>
+    <div class="draft-notice" id="draftNotice">入力内容はこの端末に一時保存されます。途中で閉じても、同じ端末なら続きから再開できます。<span class="save-status" id="draftSaveStatus">保存準備中</span><button type="button" id="clearDraft">入力内容を消す</button></div>
     <div class="form-grid" id="reservationForm">
       <label>保護者さまのお名前<span class="required">必須</span><input id="guardianName" name="guardianName" autocomplete="name" required value="山田 花子"><small class="field-error" data-error-for="guardianName"></small></label>
       <label>電話番号<span class="required">必須</span><input id="phone" name="phone" inputmode="tel" autocomplete="tel" required value="090-1234-5678"><small class="field-error" data-error-for="phone"></small></label>
@@ -266,7 +272,12 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
     <div class="form-actions"><button class="btn secondary" data-view="quick">戻る</button><button class="btn primary" id="toConfirmBtn">確認画面へ</button></div>
   </section>
 
-  <section class="section panel confirm-panel hidden" id="confirmView"><div class="progress"><span class="done">1 撮影内容</span><span class="done">2 日時</span><span class="done">3 お客様情報</span><span class="active">4 確認</span><span>5 完了</span></div><div class="step-label">STEP 4</div><h2>予約内容の確認</h2><div class="confirm-grid"><div><small>撮影内容</small><strong id="confirmService">七五三</strong></div><div><small>撮影プラン</small><strong id="confirmPlan">スタンダード</strong></div><div><small>追加オプション</small><strong id="confirmOptions">衣装相談</strong></div><div><small>日時</small><strong id="confirmTime">2026/10/10 10:00</strong></div><div><small>お客様</small><strong id="confirmGuardian">山田 花子さま</strong></div><div><small>お子様</small><strong id="confirmChild">山田 美咲さま</strong></div><div><small>所要時間目安</small><strong id="confirmDuration">約120分</strong></div><div class="price-confirm"><small>料金目安</small><strong id="confirmPrice">¥33,000（税込・デモ）</strong></div></div><div class="notice">本ページは操作確認用デモです。実際の予約・LINE送信・メール送信・決済は行われません。本番版では予約確認画面から、個人情報を再入力せずに日時変更・キャンセルを行える設計です。</div><div class="form-actions"><button class="btn secondary" data-view="form">内容を修正</button><button class="btn primary" id="completeBookingBtn">デモ予約を確定する</button></div></section>
+  <section class="section panel confirm-panel hidden" id="confirmView"><div class="progress"><span class="done">1 撮影内容</span><span class="done">2 日時</span><span class="done">3 お客様情報</span><span class="active">4 確認</span><span>5 完了</span></div><div class="step-label">STEP 4</div><h2>予約内容の確認</h2><p class="confirm-lead">最後に、日時・プラン・料金目安だけご確認ください。変更したい項目があれば戻って修正できます。</p><div class="confirm-grid"><div><small>撮影内容</small><strong id="confirmService">七五三</strong></div><div><small>撮影プラン</small><strong id="confirmPlan">スタンダード</strong></div><div><small>追加オプション</small><strong id="confirmOptions">衣装相談</strong></div><div><small>日時</small><strong id="confirmTime">2026/10/10 10:00</strong></div><div><small>お客様</small><strong id="confirmGuardian">山田 花子さま</strong></div><div><small>お子様</small><strong id="confirmChild">山田 美咲さま</strong></div><div><small>所要時間目安</small><strong id="confirmDuration">約120分</strong></div><div class="price-confirm"><small>料金目安</small><strong id="confirmPrice">¥33,000（税込・デモ）</strong><button type="button" class="confirm-detail" id="confirmPriceDetail">内訳を見る</button></div></div>
+<div class="assurance-grid" aria-label="予約前の安心ポイント"><div><b>料金を確認してから予約</b><span>プラン・追加オプションの目安を予約前に表示。</span></div><div><b>変更・キャンセル導線</b><span>本番では店舗の受付期限と規定を明示します。</span></div><div><b>入力内容は途中保存</b><span>同じ端末なら入力途中から再開できます。</span></div><div><b>迷ったらLINE相談</b><span>選択内容を引き継いで店舗へ相談できます。</span></div></div>
+<div class="policy-row"><button type="button" id="openPolicy">変更・キャンセル規定を確認</button><span>本番では店舗ごとの規定をここへ表示します。</span></div>
+<div class="notice">本ページは操作確認用デモです。実際の予約・LINE送信・メール送信・決済は行われません。</div>
+<label class="final-consent"><input type="checkbox" id="confirmAgree"><span><b>予約内容と注意事項を確認しました</b><small>本番では利用規約・個人情報の取扱いへの同意文言を店舗設定に合わせて表示できます。</small></span></label>
+<div class="form-actions"><button class="btn secondary" data-view="form">内容を修正</button><button class="btn primary" id="completeBookingBtn" disabled>デモ予約を確定する</button></div></section>
 
   <section class="section panel complete-panel hidden" id="completeView"><div class="check">✓</div><div class="step-label">RESERVATION COMPLETE</div><h2>デモ予約が完了しました</h2><p>デモ予約番号 <b>DPR-DEMO-001</b></p><div class="complete-pills"><span id="completeService">七五三</span><span id="completePlan">スタンダード</span><span id="completeOptions">衣装相談</span><span id="completePrice">¥33,000（税込・デモ）</span><span id="completeTime">2026/10/10 10:00</span></div><div class="complete-guide"><div><b>1. LINEに保存</b><span>予約番号・日時をLINEからすぐ確認できる導線を標準化。</span></div><div><b>2. 来店前の案内</b><span>持ち物・衣装・駐車場などを店舗設定から表示できます。</span></div><div><b>3. 変更もかんたん</b><span>個人情報を再入力せず、空き枠を選び直すだけで変更できます。</span></div></div><div class="complete-actions"><button class="line-btn" data-line-consult>LINEに予約情報を保存・相談</button><button class="calendar-download" id="downloadIcs">カレンダーに追加</button><button class="btn secondary" data-view="history">予約確認・変更へ</button></div></section>
 
@@ -298,8 +309,11 @@ button,.btn,.icon-btn,.today-btn,.view-switch button,.segments button,.slot,.wee
 <div class="modal-backdrop hidden" id="summaryModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="summaryModalTitle">
   <div class="modal-card"><div class="step-label">RESERVATION SUMMARY</div><h3 id="summaryModalTitle">現在の選択内容</h3><div class="summary-detail-grid"><div><small>撮影</small><b id="sheetService">七五三</b></div><div><small>プラン</small><b id="sheetPlan">スタンダード</b></div><div><small>オプション</small><b id="sheetOptions">衣装相談</b></div><div><small>日時</small><b id="sheetTime">2026/10/10 10:00</b></div><div class="wide-row"><small>料金目安</small><b id="sheetPrice">¥33,000（税込・デモ）</b></div></div><div class="modal-actions"><button data-close-modal="summaryModal">閉じる</button><button class="primary" id="summaryContinue">予約を続ける</button></div></div>
 </div>
+<div class="modal-backdrop hidden" id="policyModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
+  <div class="modal-card"><div class="step-label">RESERVATION POLICY</div><h3 id="policyModalTitle">変更・キャンセルについて</h3><p>これはDPRO標準デモの表示例です。本番では店舗ごとの規定・期限・連絡方法を管理画面から設定して表示します。</p><div class="policy-list"><div><b>予約変更</b><span>空き枠から新しい日時を選ぶだけで変更。お客様情報の再入力は不要。</span></div><div><b>キャンセル</b><span>確定前に対象予約と店舗規定を再確認してから実行。</span></div><div><b>当日のご相談</b><span>遅刻・体調不良・衣装などはLINEまたは店舗連絡先へ案内可能。</span></div></div><div class="modal-actions"><button class="primary" data-close-modal="policyModal">確認しました</button></div></div>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite">デモ：LINE連携を確認しました</div>
-<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準デモ V1.8</span></footer>
+<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準デモ V1.9</span></footer>
 <div class="mobile-summary" id="mobileSummary"><div><small>選択中</small><b><span id="mobileSummaryService">七五三</span>・<span id="mobileSummaryPlan">スタンダード</span></b><span id="mobileSummaryPrice">¥33,000（税込・デモ）</span></div><button type="button" id="openSummarySheet">内容</button></div>
 <nav class="mobilebar"><button data-scroll="#menu">メニュー</button><button class="accent" data-view="quick">予約する</button><button data-line-consult>LINE相談</button></nav>
 <script>
@@ -410,6 +424,7 @@ function setBookingMode(mode='quick'){
 function focusView(v){if(!v)return;v.setAttribute('tabindex','-1');v.focus({preventScroll:true});setTimeout(()=>v.removeAttribute('tabindex'),400)}
 function show(name){
  if(name==='quick'){Object.entries(views).forEach(([k,v])=>{if(k!=='quick')v.classList.add('hidden')});views.quick.classList.remove('hidden');setBookingMode('quick');views.quick.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>focusView(views.quick),250);return}
+ if(name==='confirm'){const ag=document.getElementById('confirmAgree'),cb=document.getElementById('completeBookingBtn');if(ag)ag.checked=false;if(cb)cb.disabled=true}
  Object.values(views).forEach(v=>v.classList.add('hidden'));views[name]?.classList.remove('hidden');views[name]?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>focusView(views[name]),250);
 }
 function chooseTime(date,timeText){
@@ -418,7 +433,7 @@ function chooseTime(date,timeText){
  time=next;sync();show('form')
 }
 function slotHTML(date,s,cls='slot'){
- const few=s.status==='few'; return `<button class="${cls}" data-slot-date="${iso(date)}" data-slot-time="${s.time}" aria-label="${fullDateLabel(date)} ${s.time} ${few?'残り1枠':'予約可'}"><b>${s.time}</b><small>${few?'残り1枠':`約${duration}分`}</small><em class="${few?'few':'ok'}">${few?'△':'○'}</em></button>`
+ const few=s.status==='few'; return `<button class="${cls}" data-slot-date="${iso(date)}" data-slot-time="${s.time}" aria-label="${fullDateLabel(date)} ${s.time} ${few?'残り1枠':'予約可'}"><b>${s.time}</b><small class="${few?'':'status-ok'}">${few?'残り1枠':`約${duration}分・予約可`}</small><em class="${few?'few':'ok'}">${few?'△':'○'}</em></button>`
 }
 function renderQuick(mode='quick'){
  let days=allFutureSlotDays();
@@ -491,10 +506,11 @@ const PHOTO_CONFIG={
  '成人式・卒業':'',
  'その他記念':''
 };
-function applyPhotoAssets(){document.querySelectorAll('[data-service]').forEach(card=>{const url=PHOTO_CONFIG[card.dataset.service];const ph=card.querySelector('.menu-photo');if(url&&ph){ph.style.backgroundImage=`linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.48)),url("${url}")`;ph.classList.add('photo-loaded')}});const url=PHOTO_CONFIG[service];const sv=document.getElementById('serviceVisual');if(sv){sv.classList.toggle('photo-loaded',!!url);sv.style.backgroundImage=url?`linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.34)),url("${url}")`:''}}
+const PHOTO_FOCUS={'お宮参り・赤ちゃん':'50% 42%','七五三':'50% 36%','バースデー':'50% 42%','入園・入学':'50% 40%','成人式・卒業':'50% 32%','その他記念':'50% 42%'};
+function applyPhotoAssets(){document.querySelectorAll('[data-service]').forEach(card=>{const key=card.dataset.service,url=PHOTO_CONFIG[key],ph=card.querySelector('.menu-photo');if(!ph)return;ph.style.backgroundPosition=PHOTO_FOCUS[key]||'center';if(url){ph.style.backgroundImage=`linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.50)),url("${url}")`;ph.classList.add('photo-loaded')}else{ph.classList.remove('photo-loaded')}});const url=PHOTO_CONFIG[service];const sv=document.getElementById('serviceVisual');if(sv){sv.classList.toggle('photo-loaded',!!url);sv.style.backgroundPosition=PHOTO_FOCUS[service]||'center';sv.style.backgroundImage=url?`linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.34)),url("${url}")`:''}}
 const DRAFT_KEY='dpro_photo_v18_draft';
 const draftFields=['guardianName','phone','email','lineLink','childName','birthDate','mainCount','costume','requests'];
-function saveDraft(){const data={};draftFields.forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value});try{localStorage.setItem(DRAFT_KEY,JSON.stringify(data))}catch(e){}}
+function saveDraft(){const data={};draftFields.forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value});try{localStorage.setItem(DRAFT_KEY,JSON.stringify(data));const st=document.getElementById('draftSaveStatus');const n=document.getElementById('draftNotice');if(st){const d=new Date();st.textContent=`保存済み ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;n?.classList.add('saved')}}catch(e){}}
 function restoreDraft(){try{const raw=localStorage.getItem(DRAFT_KEY);if(!raw)return;const data=JSON.parse(raw);draftFields.forEach(id=>{const el=document.getElementById(id);if(el&&data[id]!=null)el.value=data[id]});sync()}catch(e){}}
 function clearDraft(){try{localStorage.removeItem(DRAFT_KEY)}catch(e){};draftFields.forEach(id=>{const el=document.getElementById(id);if(!el)return;if(el.tagName==='TEXTAREA')el.value=''});document.getElementById('guardianName').value='';document.getElementById('phone').value='';document.getElementById('email').value='';document.getElementById('childName').value='';document.getElementById('birthDate').value='';sync()}
 function normalizePhoneValue(v){let x=(v||'').replace(/[－ー−―‐\s()]/g,'').replace(/-/g,'');if(x.startsWith('+81'))x='0'+x.slice(3);if(x.startsWith('0081'))x='0'+x.slice(4);return x}
@@ -532,7 +548,10 @@ draftFields.forEach(id=>document.getElementById(id)?.addEventListener('input',()
 document.getElementById('phone')?.addEventListener('blur',e=>{e.target.value=normalizePhoneValue(e.target.value);saveDraft()});
 document.getElementById('clearDraft')?.addEventListener('click',()=>{clearDraft();const t=document.getElementById('toast');t.textContent='入力途中の内容を消しました';t.classList.add('show');setTimeout(()=>{t.classList.remove('show');t.textContent='デモ：LINE連携を確認しました'},1800)});
 document.getElementById('toConfirmBtn')?.addEventListener('click',()=>{if(validateForm()){saveDraft();sync();show('confirm')}});
-document.getElementById('completeBookingBtn')?.addEventListener('click',()=>{try{localStorage.removeItem(DRAFT_KEY)}catch(e){};sync();show('complete')});
+const confirmAgree=document.getElementById('confirmAgree'),completeBtn=document.getElementById('completeBookingBtn');confirmAgree?.addEventListener('change',()=>{if(completeBtn)completeBtn.disabled=!confirmAgree.checked});
+document.getElementById('confirmPriceDetail')?.addEventListener('click',()=>openModal('priceModal'));
+document.getElementById('openPolicy')?.addEventListener('click',()=>openModal('policyModal'));
+document.getElementById('completeBookingBtn')?.addEventListener('click',()=>{if(!document.getElementById('confirmAgree')?.checked)return;try{localStorage.removeItem(DRAFT_KEY)}catch(e){};sync();show('complete')});
 document.addEventListener('keydown',trapModalKey);
 function closeModal(id){const m=document.getElementById(id);if(!m)return;m.classList.add('hidden');m.setAttribute('aria-hidden','true');const card=m.querySelector('.modal-card');card?.removeAttribute('tabindex');if(lastModalFocus&&document.contains(lastModalFocus))lastModalFocus.focus();lastModalFocus=null}
 document.querySelectorAll('[data-close-modal]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.closeModal)));
@@ -549,7 +568,7 @@ document.querySelectorAll('.modal-backdrop').forEach(m=>m.addEventListener('clic
 
 
 let consultTopic='料金・プラン';
-function refreshConsultPreview(){const el=document.getElementById('consultPreview'); if(el) el.textContent=`${service}／${plan}について、${consultTopic}を相談したいです。`; const s=document.getElementById('lineService'); if(s)s.textContent=service; const p=document.getElementById('linePlan'); if(p)p.textContent=plan; const pr=document.getElementById('linePrice'); if(pr)pr.textContent=priceText(true)}
+function refreshConsultPreview(){const el=document.getElementById('consultPreview'); if(el) el.textContent=`${service}／${plan}（${optionsText()}）について、${consultTopic}を相談したいです。`; const s=document.getElementById('lineService'); if(s)s.textContent=service; const p=document.getElementById('linePlan'); if(p)p.textContent=plan; const pr=document.getElementById('linePrice'); if(pr)pr.textContent=priceText(true)}
 function openLineModal(){refreshConsultPreview();openModal('lineModal')}
 document.querySelectorAll('[data-line-consult]').forEach(b=>b.addEventListener('click',openLineModal));
 document.querySelectorAll('[data-consult]').forEach(b=>b.addEventListener('click',()=>{consultTopic=b.dataset.consult;document.querySelectorAll('[data-consult]').forEach(x=>x.classList.remove('active'));b.classList.add('active');refreshConsultPreview()}));
