@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>DPRO PHOTO｜WEB予約デモ V1.2</title>
+<title>DPRO PHOTO｜WEB予約デモ V1.3</title>
 <style>
 :root{
   --bg:#f5f5f0;
@@ -57,6 +57,30 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   body{font-size:15px;padding-bottom:76px}.demo-badge{bottom:82px}.header{height:62px;padding:0 14px}.logo-mark{width:36px;height:36px;font-size:18px}.logo-main{font-size:16px}.logo-sub{font-size:8px}.header-nav button:not(.line){display:none}.header-nav .line{padding:9px 12px}.wrap{width:min(100% - 24px,680px);margin:16px auto 38px}.hero{padding:24px 20px;gap:22px}.hero h1{font-size:clamp(38px,12vw,52px);margin-top:9px}.hero p{font-size:14px;line-height:1.8}.hero-actions .btn{flex:1}.flow-card{padding:18px}.section{margin-top:22px}.section-head{display:block}.section-head h2{font-size:29px}.section-head p{font-size:13px;margin-top:10px}.menu-grid{grid-template-columns:1fr 1fr;gap:10px}.menu-card{padding:9px}.menu-photo{height:116px;padding:11px}.menu-photo span{font-size:19px}.menu-meta{padding-top:10px}.menu-meta strong{font-size:15px}.menu-meta small{font-size:11px}.menu-card.active:before{right:13px;top:13px;font-size:9px}.booking{padding:20px 14px}.booking-top{display:block}.booking h2{font-size:29px}.segments{width:100%;margin-top:16px}.segments button{flex:1;padding:10px 8px}.selected-strip{display:block}.selected-strip span{display:block;margin-top:3px}.day{padding:12px}.slot{min-height:72px}.calendar{padding-top:18px}.cal-head{padding:14px 12px}.cal-head-top{align-items:flex-start;flex-direction:column}.month-nav{width:100%;justify-content:space-between}.month-nav strong{font-size:20px}.view-switch{width:100%;display:grid;grid-template-columns:repeat(4,1fr)}.view-switch button{min-width:0;padding:9px 5px}.legend{gap:12px;font-size:12px}.desktop-month{display:none!important}.mobile-month{display:block}.week-grid{grid-template-columns:1fr}.week-col{border-right:0;border-bottom:1px solid var(--line);min-height:auto}.week-col:last-child{border-bottom:0}.week-col:nth-child(n+5){border-top:0}.day-view-card{padding:15px}.day-view-slots{grid-template-columns:1fr}.list-view{padding:6px 12px 12px}.list-row{grid-template-columns:1fr;gap:7px;padding:13px 0}.list-row>span:last-child{display:none}.form-panel,.confirm-panel,.complete-panel,.history-panel{padding:20px 14px}.progress{display:flex;overflow:auto;padding-bottom:3px}.progress span{min-width:112px}.form-head{display:block}.summary{margin-top:12px}.form-grid{grid-template-columns:1fr}.wide{grid-column:auto}.confirm-grid{grid-template-columns:1fr}.form-actions{position:sticky;bottom:74px;background:rgba(255,255,255,.96);padding:10px 0;z-index:15}.history-item{align-items:flex-start;flex-direction:column}.footer{display:block;padding:24px 18px 100px}.footer span{display:block;margin-top:5px}.mobilebar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.98);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1.2fr 1fr;padding:8px max(8px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));gap:7px}.mobilebar button{border:1px solid var(--line);background:#fff;border-radius:12px;min-height:50px;font-weight:900}.mobilebar .accent{background:var(--ink);color:#fff;border-color:var(--ink)}
 }
 @media(max-width:420px){.menu-grid{grid-template-columns:1fr 1fr}.menu-photo{height:104px}.hero h1{font-size:40px}.mobile-date-slots{grid-template-columns:1fr}}
+
+/* ===== V1.3 CALENDAR READABILITY / NAVIGATION ===== */
+.month-nav strong{font-size:25px;min-width:132px;text-align:center}
+.icon-btn{width:44px;height:44px;font-size:25px;line-height:1}.icon-btn:disabled{opacity:.35;cursor:not-allowed}
+.today-btn{min-height:44px;padding:10px 15px}
+.dow{font-size:16px;padding:13px 8px}.dow.sun{color:#b64949}.dow.sat{color:#3869a5}
+.date{min-height:148px;padding:11px}.date-number b{font-size:21px}.date-number .date-select{border:0;background:transparent;padding:0;cursor:pointer;font-weight:900;font-size:21px;line-height:1}.date-number .date-select:hover{text-decoration:underline}
+.date.today .date-number .date-select{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;text-decoration:none}
+.date .cal-slot{padding:9px 9px;font-size:15px;line-height:1.25}.date .cal-slot small{font-size:12px;margin-top:3px}.date .closed{font-size:12px;line-height:1.45}
+.calendar-month-note{font-size:12px;color:var(--muted);margin-top:8px}
+.week-col{min-height:330px}.week-col h4{font-size:15px}.week-col h4 b{font-size:25px}.week-slot{font-size:15px;padding:11px}.week-slot small{font-size:12px}
+.day-view-title h3{font-size:25px}.day-view-date-nav{display:flex;gap:8px;align-items:center}.day-view-date-nav button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-weight:900;cursor:pointer}
+.list-row strong{font-size:18px}.list-row button{font-size:15px;padding:10px 13px}
+.empty-state{padding:34px 20px;text-align:center;color:var(--muted)}.empty-state strong{display:block;color:var(--ink);font-size:18px;margin-bottom:5px}
+.month-caption{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);margin-top:10px}.month-caption b{color:var(--ink)}
+.date.outside{background:#fafbf9;color:#b8beb7}.date.outside .date-number{opacity:.7}
+.mobile-date-card.no-slots{background:#f8f9f7;color:#8a9089}.mobile-date-card.no-slots .mobile-date-head{margin-bottom:0}
+.mobile-date-slots button{font-size:15px}.mobile-date-slots button small{font-size:12px}
+@media(max-width:760px){
+  .month-nav{display:grid;grid-template-columns:44px 1fr 44px auto;gap:7px}.month-nav strong{min-width:0;font-size:21px}.today-btn{padding:8px 10px}.icon-btn{width:42px;height:42px}
+  .mobile-month{padding-top:4px}.mobile-date-card{padding:15px}.mobile-date-head strong{font-size:18px}.mobile-date-slots{grid-template-columns:1fr 1fr}.mobile-date-slots button{min-height:62px}
+  .day-view-title{align-items:flex-start;flex-direction:column}.day-view-date-nav{width:100%}.day-view-date-nav button{flex:1}
+}
+
 </style>
 </head>
 <body>
@@ -105,29 +129,22 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
       <div class="calendar-shell">
         <div class="cal-head">
           <div class="cal-head-top">
-            <div class="month-nav"><button class="icon-btn" aria-label="前の月">‹</button><strong>2026年10月</strong><button class="icon-btn" aria-label="次の月">›</button><button class="today-btn">今月</button></div>
-            <div class="view-switch"><button class="active" data-cal-view="month">月</button><button data-cal-view="week">週</button><button data-cal-view="day">日</button><button data-cal-view="list">一覧</button></div>
-          </div>
-          <div class="legend"><span class="legend-item"><i class="dot d-ok"></i>予約可</span><span class="legend-item"><i class="dot d-few"></i>残りわずか</span><span class="legend-item"><i class="dot d-full"></i>受付終了</span><span class="legend-item"><i class="dot d-past"></i>過去日</span></div>
-        </div>
-
-        <div class="cal-view active" id="calViewMonth">
-          <div class="desktop-month">
-            <div class="calgrid">
-              <div class="dow sun">日</div><div class="dow">月</div><div class="dow">火</div><div class="dow">水</div><div class="dow">木</div><div class="dow">金</div><div class="dow sat">土</div>
-              <div class="date past"><div class="date-number"><b>27</b></div></div><div class="date past"><div class="date-number"><b>28</b></div></div><div class="date past"><div class="date-number"><b>29</b></div></div><div class="date past"><div class="date-number"><b>30</b></div></div>
-              <div class="date past"><div class="date-number"><b>1</b><small>過去</small></div><span class="closed">予約できません</span></div><div class="date past"><div class="date-number"><b>2</b><small>過去</small></div><span class="closed">予約できません</span></div><div class="date past weekend-sat"><div class="date-number"><b class="sat">3</b><small>過去</small></div><span class="closed">予約できません</span></div>
-              <div class="date past weekend-sun"><div class="date-number"><b class="sun">4</b><small>過去</small></div><span class="closed">予約できません</span></div><div class="date today"><div class="date-number"><b>5</b><small>今日</small></div><span class="closed">本日分は受付終了</span></div><div class="date"><div class="date-number"><b>6</b></div></div><div class="date"><div class="date-number"><b>7</b></div><button class="cal-slot" data-time="2026/10/07 10:00">10:00 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>8</b></div></div><div class="date"><div class="date-number"><b>9</b></div><button class="cal-slot" data-time="2026/10/09 10:00">10:00 ○<small>予約可</small></button></div><div class="date weekend-sat"><div class="date-number"><b class="sat">10</b></div><button class="cal-slot" data-time="2026/10/10 10:00">10:00 ○<small>予約可</small></button><button class="cal-slot few-slot" data-time="2026/10/10 13:00">13:00 △<small>残り1枠</small></button></div>
-              <div class="date weekend-sun"><div class="date-number"><b class="sun">11</b></div><button class="cal-slot" data-time="2026/10/11 09:30">09:30 ○<small>予約可</small></button><button class="cal-slot" data-time="2026/10/11 14:00">14:00 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>12</b><small>祝日</small></div><button class="cal-slot" data-time="2026/10/12 11:00">11:00 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>13</b></div></div><div class="date"><div class="date-number"><b>14</b></div><button class="cal-slot" data-time="2026/10/14 10:00">10:00 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>15</b></div></div><div class="date"><div class="date-number"><b>16</b></div><button class="cal-slot few-slot" data-time="2026/10/16 13:00">13:00 △<small>残り1枠</small></button></div><div class="date weekend-sat"><div class="date-number"><b class="sat">17</b></div><button class="cal-slot" data-time="2026/10/17 10:00">10:00 ○<small>予約可</small></button></div>
-              <div class="date weekend-sun"><div class="date-number"><b class="sun">18</b></div></div><div class="date"><div class="date-number"><b>19</b></div><button class="cal-slot" data-time="2026/10/19 11:00">11:00 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>20</b></div><button class="cal-slot" data-time="2026/10/20 15:00">15:00 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>21</b></div></div><div class="date"><div class="date-number"><b>22</b></div></div><div class="date"><div class="date-number"><b>23</b></div><button class="cal-slot" data-time="2026/10/23 10:30">10:30 ○<small>予約可</small></button></div><div class="date weekend-sat"><div class="date-number"><b class="sat">24</b></div></div>
-              <div class="date weekend-sun"><div class="date-number"><b class="sun">25</b></div></div><div class="date"><div class="date-number"><b>26</b></div><button class="cal-slot" data-time="2026/10/26 09:30">09:30 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>27</b></div></div><div class="date"><div class="date-number"><b>28</b></div><button class="cal-slot" data-time="2026/10/28 13:30">13:30 ○<small>予約可</small></button></div><div class="date"><div class="date-number"><b>29</b></div></div><div class="date"><div class="date-number"><b>30</b></div><button class="cal-slot" data-time="2026/10/30 10:00">10:00 ○<small>予約可</small></button></div><div class="date weekend-sat"><div class="date-number"><b class="sat">31</b></div><button class="cal-slot few-slot" data-time="2026/10/31 14:00">14:00 △<small>残り1枠</small></button></div>
+            <div class="month-nav">
+              <button class="icon-btn" id="prevMonth" aria-label="前の月">‹</button>
+              <strong id="monthLabel">2026年10月</strong>
+              <button class="icon-btn" id="nextMonth" aria-label="次の月">›</button>
+              <button class="today-btn" id="todayMonth">今月</button>
+            </div>
+            <div class="view-switch">
+              <button class="active" data-cal-view="month">月</button><button data-cal-view="week">週</button><button data-cal-view="day">日</button><button data-cal-view="list">一覧</button>
             </div>
           </div>
-          <div class="mobile-month" id="mobileMonth"></div>
+          <div class="legend"><span class="legend-item"><i class="dot d-ok"></i>予約可</span><span class="legend-item"><i class="dot d-few"></i>残りわずか</span><span class="legend-item"><i class="dot d-full"></i>受付終了</span><span class="legend-item"><i class="dot d-past"></i>過去日</span></div>
+          <div class="month-caption"><b>V1.3</b><span>前月・翌月・今月が実動。月／週／日／一覧は同じ予約データで連動します。</span></div>
         </div>
-
+        <div class="cal-view active" id="calViewMonth"><div class="desktop-month" id="desktopMonth"></div><div class="mobile-month" id="mobileMonth"></div></div>
         <div class="cal-view" id="calViewWeek"><div class="week-grid" id="weekGrid"></div></div>
-        <div class="cal-view" id="calViewDay"><div class="day-view-card"><div class="day-view-title"><h3>10月10日（土）</h3><span class="tag">おすすめ</span></div><div class="day-view-slots"><button class="slot" data-time="2026/10/10 10:00"><b>10:00</b><small>約120分</small><em class="ok">○</em></button><button class="slot" data-time="2026/10/10 13:00"><b>13:00</b><small>残り1枠</small><em class="few">△</em></button><button class="slot" data-time="2026/10/10 15:30"><b>15:30</b><small>約120分</small><em class="ok">○</em></button></div></div></div>
+        <div class="cal-view" id="calViewDay"><div id="dayView"></div></div>
         <div class="cal-view" id="calViewList"><div class="list-view" id="listView"></div></div>
       </div>
     </div>
@@ -148,80 +165,146 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
   <section class="section panel history-panel hidden" id="historyView"><div class="step-label">MY RESERVATION</div><h2>予約確認・撮影履歴</h2><div class="history-item current"><div><b>2026/10/10 10:00</b><span>七五三</span></div><div><button>変更</button><button>キャンセル</button></div></div><div class="history-item"><div><b>2024/11/03</b><span>3歳 七五三</span></div><div><small>撮影済み</small></div></div><div class="history-item"><div><b>2025/05/12</b><span>バースデー</span></div><div><small>撮影済み</small></div></div><div class="notice" style="margin-top:16px">DPRO連携では、生年月日・撮影履歴から「来月誕生日」「今年3・5・7歳」「前回撮影から1年」などの対象者を店舗側で抽出できます。</div></section>
 </main>
-<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準プロトタイプ V1.2</span></footer>
+<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準プロトタイプ V1.3</span></footer>
 <nav class="mobilebar"><button data-scroll="#menu">メニュー</button><button class="accent" data-view="quick">予約する</button><button>LINE相談</button></nav>
 <script>
 const views={quick:document.getElementById('quick'),form:document.getElementById('formView'),confirm:document.getElementById('confirmView'),complete:document.getElementById('completeView'),history:document.getElementById('historyView')};
+const DEMO_TODAY=new Date(2026,9,5); // 2026-10-05 固定デモ基準日
+const MIN_MONTH=new Date(2026,8,1);   // 2026-09
+const MAX_MONTH=new Date(2027,3,1);   // 2027-04
 let service='七五三',duration=120,time='2026/10/10 10:00';
-const allSlots=[
-  {date:'10/07（水）',iso:'2026/10/07',times:[['10:00','ok']]},
-  {date:'10/09（金）',iso:'2026/10/09',times:[['10:00','ok']]},
-  {date:'10/10（土）',iso:'2026/10/10',tag:'最短',times:[['10:00','ok'],['13:00','few'],['15:30','ok']]},
-  {date:'10/11（日）',iso:'2026/10/11',tag:'人気',times:[['09:30','ok'],['14:00','ok']]},
-  {date:'10/12（月・祝）',iso:'2026/10/12',tag:'祝日',times:[['11:00','ok'],['14:30','few']]},
-  {date:'10/14（水）',iso:'2026/10/14',times:[['10:00','ok']]},
-  {date:'10/16（金）',iso:'2026/10/16',times:[['13:00','few']]},
-  {date:'10/17（土）',iso:'2026/10/17',times:[['10:00','ok']]},
-  {date:'10/19（月）',iso:'2026/10/19',times:[['11:00','ok']]},
-  {date:'10/20（火）',iso:'2026/10/20',times:[['15:00','ok']]},
-  {date:'10/23（金）',iso:'2026/10/23',times:[['10:30','ok']]},
-  {date:'10/26（月）',iso:'2026/10/26',times:[['09:30','ok']]},
-  {date:'10/28（水）',iso:'2026/10/28',times:[['13:30','ok']]},
-  {date:'10/30（金）',iso:'2026/10/30',times:[['10:00','ok']]},
-  {date:'10/31（土）',iso:'2026/10/31',times:[['14:00','few']]}
-];
+let currentMonth=new Date(2026,9,1);
+let selectedDate=new Date(2026,9,10);
+let calView='month';
+const holidays={'2026-10-12':'祝日','2026-11-03':'祝日','2026-11-23':'祝日','2027-01-01':'元日','2027-01-11':'祝日','2027-02-11':'祝日','2027-02-23':'祝日','2027-03-20':'祝日'};
+const fixed={
+ '2026-10-07':[['10:00','ok']], '2026-10-09':[['10:00','ok']], '2026-10-10':[['10:00','ok'],['13:00','few'],['15:30','ok']],
+ '2026-10-11':[['09:30','ok'],['14:00','ok']], '2026-10-12':[['11:00','ok'],['14:30','few']], '2026-10-14':[['10:00','ok']],
+ '2026-10-16':[['13:00','few']], '2026-10-17':[['10:00','ok']], '2026-10-19':[['11:00','ok']], '2026-10-20':[['15:00','ok']],
+ '2026-10-23':[['10:30','ok']], '2026-10-26':[['09:30','ok']], '2026-10-28':[['13:30','ok']], '2026-10-30':[['10:00','ok']], '2026-10-31':[['14:00','few']]
+};
+function pad(n){return String(n).padStart(2,'0')}
+function iso(d){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
+function sameDate(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+function startOfDay(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function isPast(d){return startOfDay(d)<startOfDay(DEMO_TODAY)}
+function monthKey(d){return `${d.getFullYear()}-${pad(d.getMonth()+1)}`}
+function weekdayJP(d){return '日月火水木金土'[d.getDay()]}
+function dateLabel(d){const h=holidays[iso(d)];return `${pad(d.getMonth()+1)}/${pad(d.getDate())}（${weekdayJP(d)}${h?'・祝':''}）`}
+function fullDateLabel(d){const h=holidays[iso(d)];return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${weekdayJP(d)}${h?'・祝':''}）`}
+function monthLabel(d){return `${d.getFullYear()}年${d.getMonth()+1}月`}
+function seedForDate(d){return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
+function generatedSlots(d){
+  const key=iso(d); if(fixed[key]) return fixed[key]; if(isPast(d)) return [];
+  const dow=d.getDay(), seed=seedForDate(d), day=d.getDate();
+  if(day===1 && d.getMonth()===0) return [];
+  if(dow===1 && day%2===0) return [['11:00','ok']];
+  if(dow===2 && day%3===0) return [['15:00','ok']];
+  if(dow===3) return day%4===0?[['10:00','ok'],['13:30','ok']]:[['10:00','ok']];
+  if(dow===4 && day%3===1) return [['11:30','ok']];
+  if(dow===5) return seed%4===0?[['10:00','ok'],['13:00','few']]:[['10:00','ok']];
+  if(dow===6) return seed%3===0?[['10:00','ok'],['13:00','few'],['15:30','ok']]:[['10:00','ok'],['14:00',seed%2?'ok':'few']];
+  if(dow===0 && day%2===1) return [['09:30','ok'],['14:00','ok']];
+  return [];
+}
+function slotsForDate(d){return generatedSlots(d).map(([t,s])=>({time:t,status:s}))}
+function datesInRange(start,end){const out=[];for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1))out.push(new Date(d));return out}
+function monthDates(d){return datesInRange(new Date(d.getFullYear(),d.getMonth(),1),new Date(d.getFullYear(),d.getMonth()+1,0))}
+function allFutureSlotDays(){return datesInRange(DEMO_TODAY,new Date(2027,3,30)).filter(d=>slotsForDate(d).length)}
 function sync(){
-  document.getElementById('serviceTitle').textContent=service;
-  document.getElementById('selectedService').textContent=service;
-  document.getElementById('selectedDuration').textContent=`約${duration}分`;
-  document.getElementById('confirmDuration').textContent=`約${duration}分`;
-  ['summaryService','confirmService','completeService'].forEach(id=>document.getElementById(id).textContent=service);
-  ['summaryTime','confirmTime','completeTime'].forEach(id=>document.getElementById(id).textContent=time);
+ document.getElementById('serviceTitle').textContent=service; document.getElementById('selectedService').textContent=service;
+ document.getElementById('selectedDuration').textContent=`約${duration}分`; document.getElementById('confirmDuration').textContent=`約${duration}分`;
+ ['summaryService','confirmService','completeService'].forEach(id=>document.getElementById(id).textContent=service);
+ ['summaryTime','confirmTime','completeTime'].forEach(id=>document.getElementById(id).textContent=time);
 }
 function setBookingMode(mode='quick'){
-  document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x.dataset.mode===mode));
-  const cal=document.getElementById('calendar'),grid=document.getElementById('slotGrid');
-  if(mode==='calendar'){cal.classList.remove('hidden');grid.classList.add('hidden')}else{cal.classList.add('hidden');grid.classList.remove('hidden');renderQuick(mode)}
+ document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x.dataset.mode===mode));
+ const cal=document.getElementById('calendar'),grid=document.getElementById('slotGrid');
+ if(mode==='calendar'){cal.classList.remove('hidden');grid.classList.add('hidden');renderCalendar()}
+ else{cal.classList.add('hidden');grid.classList.remove('hidden');renderQuick(mode)}
 }
 function show(name){
-  if(name==='quick'){
-    Object.entries(views).forEach(([k,v])=>{if(k!=='quick')v.classList.add('hidden')});
-    views.quick.classList.remove('hidden');setBookingMode('quick');views.quick.scrollIntoView({behavior:'smooth',block:'start'});return;
-  }
-  Object.values(views).forEach(v=>v.classList.add('hidden'));
-  views[name]?.classList.remove('hidden');views[name]?.scrollIntoView({behavior:'smooth',block:'start'});
+ if(name==='quick'){Object.entries(views).forEach(([k,v])=>{if(k!=='quick')v.classList.add('hidden')});views.quick.classList.remove('hidden');setBookingMode('quick');views.quick.scrollIntoView({behavior:'smooth',block:'start'});return}
+ Object.values(views).forEach(v=>v.classList.add('hidden'));views[name]?.classList.remove('hidden');views[name]?.scrollIntoView({behavior:'smooth',block:'start'});
 }
-function slotButton(t,status){const few=status==='few';return `<button class="slot" data-time="${t.iso} ${t.time}"><b>${t.time}</b><small>${few?'残り1枠':`約${duration}分`}</small><em class="${few?'few':'ok'}">${few?'△':'○'}</em></button>`}
+function chooseTime(date,timeText){time=`${iso(date).replaceAll('-','/')} ${timeText}`;selectedDate=new Date(date);currentMonth=new Date(date.getFullYear(),date.getMonth(),1);sync();show('form')}
+function slotHTML(date,s,cls='slot'){
+ const few=s.status==='few'; return `<button class="${cls}" data-slot-date="${iso(date)}" data-slot-time="${s.time}"><b>${s.time}</b><small>${few?'残り1枠':`約${duration}分`}</small><em class="${few?'few':'ok'}">${few?'△':'○'}</em></button>`
+}
 function renderQuick(mode='quick'){
-  let data=allSlots;
-  if(mode==='quick') data=allSlots.slice(2,5);
-  if(mode==='weekend') data=allSlots.filter(d=>d.date.includes('土')||d.date.includes('日')).slice(0,4);
-  const grid=document.getElementById('slotGrid');
-  grid.innerHTML=data.map(d=>`<article class="day"><div class="day-head"><strong>${d.date}</strong>${d.tag?`<span class="tag">${d.tag}</span>`:''}</div>${d.times.map(x=>slotButton({iso:d.iso,time:x[0]},x[1])).join('')}</article>`).join('');
-  bindTimes(grid);
+ let days=allFutureSlotDays();
+ if(mode==='quick') days=days.slice(0,3); else if(mode==='weekend') days=days.filter(d=>[0,6].includes(d.getDay())).slice(0,4);
+ const grid=document.getElementById('slotGrid');
+ grid.innerHTML=days.map((d,i)=>`<article class="day"><div class="day-head"><strong>${dateLabel(d)}</strong>${i===0&&mode==='quick'?'<span class="tag">最短</span>':i===1&&mode==='quick'?'<span class="tag">人気</span>':''}</div>${slotsForDate(d).map(s=>slotHTML(d,s)).join('')}</article>`).join('');
 }
-function bindTimes(root=document){root.querySelectorAll('[data-time]').forEach(b=>{if(b.dataset.bound)return;b.dataset.bound='1';b.addEventListener('click',()=>{time=b.dataset.time;sync();show('form')})})}
+function buildMonthMatrix(month){
+ const first=new Date(month.getFullYear(),month.getMonth(),1), last=new Date(month.getFullYear(),month.getMonth()+1,0);
+ const start=new Date(first);start.setDate(first.getDate()-first.getDay()); const end=new Date(last);end.setDate(last.getDate()+(6-last.getDay()));
+ return datesInRange(start,end);
+}
+function renderDesktopMonth(){
+ const host=document.getElementById('desktopMonth'); const days=buildMonthMatrix(currentMonth);
+ let out='<div class="calgrid"><div class="dow sun">日</div><div class="dow">月</div><div class="dow">火</div><div class="dow">水</div><div class="dow">木</div><div class="dow">金</div><div class="dow sat">土</div>';
+ for(const d of days){
+   const outside=d.getMonth()!==currentMonth.getMonth(), past=isPast(d), sat=d.getDay()===6, sun=d.getDay()===0, today=sameDate(d,DEMO_TODAY), h=holidays[iso(d)], slots=outside?[]:slotsForDate(d);
+   const classes=['date',outside?'outside':'',past?'past':'',sat?'weekend-sat':'',sun?'weekend-sun':'',today?'today':''].filter(Boolean).join(' ');
+   out+=`<div class="${classes}"><div class="date-number"><button class="date-select ${sat?'sat':''} ${sun?'sun':''}" data-select-date="${iso(d)}">${d.getDate()}</button>${today?'<small>今日</small>':h?'<small>祝日</small>':past&&!outside?'<small>過去</small>':''}</div>`;
+   if(!outside){
+     if(past) out+='<span class="closed">予約できません</span>';
+     else if(today&&!slots.length) out+='<span class="closed">本日分は受付終了</span>';
+     else if(!slots.length) out+='<span class="closed">空き枠なし</span>';
+     else slots.slice(0,3).forEach(s=>{out+=`<button class="cal-slot ${s.status==='few'?'few-slot':''}" data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}<small>${s.status==='few'?'残り1枠':'予約可'}</small></button>`});
+   }
+   out+='</div>';
+ }
+ out+='</div>';host.innerHTML=out;
+}
 function renderMobileMonth(){
-  const el=document.getElementById('mobileMonth');
-  el.innerHTML=allSlots.map(d=>`<article class="mobile-date-card"><div class="mobile-date-head"><strong>${d.date}</strong>${d.tag?`<span class="tag">${d.tag}</span>`:''}</div><div class="mobile-date-slots">${d.times.map(x=>`<button data-time="${d.iso} ${x[0]}">${x[0]} ${x[1]==='few'?'△':'○'}<small>${x[1]==='few'?'残り1枠':`約${duration}分`}</small></button>`).join('')}</div></article>`).join('');
-  bindTimes(el);
+ const host=document.getElementById('mobileMonth'), days=monthDates(currentMonth);
+ host.innerHTML=days.map(d=>{const slots=slotsForDate(d),past=isPast(d),h=holidays[iso(d)]; if(past&&!sameDate(d,DEMO_TODAY)) return '';
+  return `<article class="mobile-date-card ${slots.length?'':'no-slots'}"><div class="mobile-date-head"><strong>${dateLabel(d)}</strong>${sameDate(d,DEMO_TODAY)?'<span class="tag">今日</span>':h?'<span class="tag">祝日</span>':''}</div>${slots.length?`<div class="mobile-date-slots">${slots.map(s=>`<button data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}<small>${s.status==='few'?'残り1枠':'予約可'}</small></button>`).join('')}</div>`:`<div class="closed">${sameDate(d,DEMO_TODAY)?'本日分は受付終了':'空き枠なし'}</div>`}</article>`}).join('') || '<div class="empty-state"><strong>この月に予約可能な枠はありません</strong><span>次の月をご確認ください。</span></div>';
 }
+function weekStart(d){const x=new Date(d);x.setDate(x.getDate()-x.getDay());return x}
 function renderWeek(){
-  const el=document.getElementById('weekGrid'),data=allSlots.slice(2,9);
-  el.innerHTML=data.map(d=>`<div class="week-col"><h4>${d.date.slice(0,5)}<b>${d.date.slice(6)}</b></h4>${d.times.map(x=>`<button class="week-slot" data-time="${d.iso} ${x[0]}">${x[0]} ${x[1]==='few'?'△':'○'}<small>${x[1]==='few'?'残り1枠':`約${duration}分`}</small></button>`).join('')}</div>`).join('');
-  bindTimes(el);
+ const host=document.getElementById('weekGrid'), start=weekStart(selectedDate), days=datesInRange(start,new Date(start.getFullYear(),start.getMonth(),start.getDate()+6));
+ host.innerHTML=days.map(d=>{const slots=slotsForDate(d),past=isPast(d);return `<div class="week-col"><h4>${pad(d.getMonth()+1)}/${pad(d.getDate())}<b>${weekdayJP(d)}${holidays[iso(d)]?'・祝':''}</b></h4>${past?'<span class="closed">過去日</span>':slots.length?slots.map(s=>`<button class="week-slot" data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}<small>${s.status==='few'?'残り1枠':`約${duration}分`}</small></button>`).join(''):'<span class="closed">空き枠なし</span>'}</div>`}).join('');
+}
+function renderDay(){
+ const host=document.getElementById('dayView'), slots=slotsForDate(selectedDate), past=isPast(selectedDate);
+ host.innerHTML=`<div class="day-view-card"><div class="day-view-title"><div><h3>${fullDateLabel(selectedDate)}</h3><div class="calendar-month-note">選択中の日付。前日・翌日へ移動できます。</div></div><div class="day-view-date-nav"><button data-day-shift="-1">前日</button><button data-day-today>今日</button><button data-day-shift="1">翌日</button></div></div>${past?'<div class="empty-state"><strong>過去日は予約できません</strong></div>':slots.length?`<div class="day-view-slots">${slots.map(s=>slotHTML(selectedDate,s)).join('')}</div>`:'<div class="empty-state"><strong>この日は空き枠がありません</strong><span>別の日付をご確認ください。</span></div>'}</div>`;
 }
 function renderList(){
-  const el=document.getElementById('listView');
-  el.innerHTML=allSlots.map(d=>`<div class="list-row"><strong>${d.date}</strong><div class="list-time">${d.times.map(x=>`<button data-time="${d.iso} ${x[0]}">${x[0]} ${x[1]==='few'?'△':'○'}</button>`).join('')}</div><span>${d.tag||''}</span></div>`).join('');
-  bindTimes(el);
+ const host=document.getElementById('listView'), days=monthDates(currentMonth).filter(d=>slotsForDate(d).length&&!isPast(d));
+ host.innerHTML=days.length?days.map(d=>`<div class="list-row"><strong>${dateLabel(d)}</strong><div class="list-time">${slotsForDate(d).map(s=>`<button data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}</button>`).join('')}</div><span>${holidays[iso(d)]||''}</span></div>`).join(''):'<div class="empty-state"><strong>この月に予約可能な枠はありません</strong><span>翌月をご確認ください。</span></div>';
 }
+function renderCalendar(){
+ document.getElementById('monthLabel').textContent=monthLabel(currentMonth);
+ document.getElementById('prevMonth').disabled=currentMonth<=MIN_MONTH; document.getElementById('nextMonth').disabled=currentMonth>=MAX_MONTH;
+ renderDesktopMonth();renderMobileMonth();renderWeek();renderDay();renderList();
+ document.querySelectorAll('[data-cal-view]').forEach(x=>x.classList.toggle('active',x.dataset.calView===calView));
+ document.querySelectorAll('.cal-view').forEach(v=>v.classList.remove('active')); const target=document.getElementById('calView'+calView[0].toUpperCase()+calView.slice(1));target?.classList.add('active');
+}
+function shiftMonth(delta){
+ const n=new Date(currentMonth.getFullYear(),currentMonth.getMonth()+delta,1); if(n<MIN_MONTH||n>MAX_MONTH)return; currentMonth=n;
+ const day=Math.min(selectedDate.getDate(),new Date(n.getFullYear(),n.getMonth()+1,0).getDate()); selectedDate=new Date(n.getFullYear(),n.getMonth(),day); renderCalendar();
+}
+function setMonthToToday(){currentMonth=new Date(DEMO_TODAY.getFullYear(),DEMO_TODAY.getMonth(),1);selectedDate=new Date(DEMO_TODAY);renderCalendar()}
+function setCalView(view){calView=view;renderCalendar()}
+function setSelectedDate(isoText,switchToDay=false){const [y,m,d]=isoText.split('-').map(Number);selectedDate=new Date(y,m-1,d);currentMonth=new Date(y,m-1,1);if(switchToDay)calView='day';renderCalendar()}
+
+document.addEventListener('click',e=>{
+ const slot=e.target.closest('[data-slot-date][data-slot-time]'); if(slot){const [y,m,d]=slot.dataset.slotDate.split('-').map(Number);chooseTime(new Date(y,m-1,d),slot.dataset.slotTime);return}
+ const ds=e.target.closest('[data-select-date]'); if(ds){setSelectedDate(ds.dataset.selectDate,true);return}
+ const shift=e.target.closest('[data-day-shift]'); if(shift){const d=new Date(selectedDate);d.setDate(d.getDate()+Number(shift.dataset.dayShift));setSelectedDate(iso(d));return}
+ if(e.target.closest('[data-day-today]')){setSelectedDate(iso(DEMO_TODAY));return}
+});
 document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>document.querySelector(b.dataset.scroll)?.scrollIntoView({behavior:'smooth'})));
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
-document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>{service=b.dataset.service;duration=Number(b.dataset.duration||120);document.querySelectorAll('[data-service]').forEach(x=>x.classList.remove('active'));b.classList.add('active');sync();renderMobileMonth();renderWeek();renderList();show('quick')}));
+document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>{service=b.dataset.service;duration=Number(b.dataset.duration||120);document.querySelectorAll('[data-service]').forEach(x=>x.classList.remove('active'));b.classList.add('active');sync();renderQuick('quick');renderCalendar();show('quick')}));
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setBookingMode(b.dataset.mode)));
-document.querySelectorAll('[data-cal-view]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-cal-view]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.cal-view').forEach(v=>v.classList.remove('active'));document.getElementById('calView'+b.dataset.calView[0].toUpperCase()+b.dataset.calView.slice(1)).classList.add('active')}));
-renderQuick();renderMobileMonth();renderWeek();renderList();bindTimes();sync();
+document.querySelectorAll('[data-cal-view]').forEach(b=>b.addEventListener('click',()=>setCalView(b.dataset.calView)));
+document.getElementById('prevMonth').addEventListener('click',()=>shiftMonth(-1));document.getElementById('nextMonth').addEventListener('click',()=>shiftMonth(1));document.getElementById('todayMonth').addEventListener('click',setMonthToToday);
+renderQuick();renderCalendar();sync();
 </script>
 </body>
 </html>
