@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>DPRO PHOTO｜WEB予約デモ V1.3</title>
+<title>DPRO PHOTO｜WEB予約デモ V1.4</title>
 <style>
 :root{
   --bg:#f5f5f0;
@@ -58,7 +58,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 }
 @media(max-width:420px){.menu-grid{grid-template-columns:1fr 1fr}.menu-photo{height:104px}.hero h1{font-size:40px}.mobile-date-slots{grid-template-columns:1fr}}
 
-/* ===== V1.3 CALENDAR READABILITY / NAVIGATION ===== */
+/* ===== V1.4 CALENDAR READABILITY / NAVIGATION ===== */
 .month-nav strong{font-size:25px;min-width:132px;text-align:center}
 .icon-btn{width:44px;height:44px;font-size:25px;line-height:1}.icon-btn:disabled{opacity:.35;cursor:not-allowed}
 .today-btn{min-height:44px;padding:10px 15px}
@@ -80,6 +80,24 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .mobile-month{padding-top:4px}.mobile-date-card{padding:15px}.mobile-date-head strong{font-size:18px}.mobile-date-slots{grid-template-columns:1fr 1fr}.mobile-date-slots button{min-height:62px}
   .day-view-title{align-items:flex-start;flex-direction:column}.day-view-date-nav{width:100%}.day-view-date-nav button{flex:1}
 }
+
+
+/* V1.4: service guidance + calendar readability */
+.service-guide{margin-top:16px;display:grid;grid-template-columns:.95fr 1.35fr;gap:14px;align-items:stretch}
+.service-visual,.service-info{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}
+.service-visual{padding:20px;display:flex;flex-direction:column;justify-content:space-between;min-height:210px;position:relative;background:linear-gradient(140deg,#f6f2ee,#ebe4dc)}
+.service-visual:after{content:"PHOTO AREA";position:absolute;right:18px;top:16px;font-size:10px;letter-spacing:.16em;color:#8a8e88;font-weight:900}
+.service-visual .service-symbol{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.9);font:500 28px/1 Georgia,"Yu Mincho",serif}
+.service-visual h3{font:500 30px/1.25 Georgia,"Yu Mincho",serif;margin:18px 0 4px}.service-visual p{margin:0;color:var(--muted);font-size:13px}
+.service-info{padding:20px}.service-info-top{display:flex;justify-content:space-between;gap:15px;align-items:start}.service-info h3{margin:0;font-size:18px}.service-info .service-copy{color:var(--muted);font-size:13px;line-height:1.75;margin:8px 0 14px}
+.service-chips{display:flex;flex-wrap:wrap;gap:8px}.service-chip{border:1px solid var(--line);background:#fafbf8;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800}.service-chip b{color:var(--lime-dark)}
+.service-points{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.service-point{background:#f7f8f4;border-radius:12px;padding:11px}.service-point b{display:block;font-size:12px}.service-point span{display:block;color:var(--muted);font-size:11px;margin-top:3px;line-height:1.5}
+.service-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}.service-actions .btn{padding:10px 14px;font-size:13px}
+.calendar-stat{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.calendar-stat b{font-size:14px;color:var(--ink)}
+.month-select{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 10px;font-weight:800;min-height:40px}
+.date{min-height:150px;padding:12px}.dow{font-size:15px;padding:12px 8px}.date-select{font-size:20px!important;font-weight:900}.date-number small{font-size:11px!important}.date .cal-slot{font-size:14px;padding:9px 9px;border-radius:9px}.date .cal-slot small{font-size:12px}.closed{font-size:12px!important;line-height:1.45}.month-caption{display:flex!important;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.month-caption b{font-size:11px}.month-caption span{font-size:12px!important}.month-caption .calendar-stat{margin-left:auto}
+@media(max-width:900px){.service-guide{grid-template-columns:1fr}.service-points{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.service-guide{gap:10px}.service-visual{min-height:160px;padding:16px}.service-visual h3{font-size:25px}.service-info{padding:16px}.service-info-top{display:block}.service-points{grid-template-columns:1fr}.service-actions .btn{flex:1}.month-select{width:100%}.month-caption .calendar-stat{margin-left:0}.mobile-date-head strong{font-size:18px!important}.mobile-date-slots button{font-size:15px!important;min-height:46px}}
 
 </style>
 </head>
@@ -103,7 +121,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
       <div class="flow-step"><div class="n">1</div><div><strong>撮影内容を選ぶ</strong><span>七五三・バースデーなど、写真から選択。</span></div></div>
       <div class="flow-step"><div class="n">2</div><div><strong>空いている日時を選ぶ</strong><span>最短・土日・カレンダーから探せます。</span></div></div>
       <div class="flow-step"><div class="n">3</div><div><strong>お客様情報を入力</strong><span>確認して予約完了。LINE保存も可能。</span></div></div>
-      <div class="flow-note">複雑なカレンダーは「必要な人だけ」開けます。</div>
+      <div class="flow-note">最短予約はシンプルに。細かく探したい時だけ高機能カレンダーを開けます。</div>
     </aside>
   </section>
 
@@ -116,6 +134,18 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
       <button class="menu-card" data-service="入園・入学" data-duration="90"><div class="menu-photo m-school"><span>School</span></div><div class="menu-meta"><strong>入園・入学</strong><small>School</small></div></button>
       <button class="menu-card" data-service="成人式・卒業" data-duration="150"><div class="menu-photo m-adult"><span>Coming of Age</span></div><div class="menu-meta"><strong>成人式・卒業</strong><small>Coming of Age</small></div></button>
       <button class="menu-card" data-service="その他記念" data-duration="120"><div class="menu-photo m-family"><span>Family</span></div><div class="menu-meta"><strong>その他記念</strong><small>Family / Anniversary</small></div></button>
+    </div>
+    <div class="service-guide" id="serviceGuide">
+      <div class="service-visual" id="serviceVisual">
+        <div class="service-symbol" id="serviceSymbol">七</div>
+        <div><h3 id="guideTitle">七五三</h3><p id="guideSub">3・5・7歳の大切な節目を、家族らしく残す撮影。</p></div>
+      </div>
+      <div class="service-info">
+        <div class="service-info-top"><div><h3>選んだ撮影内容を確認</h3><p class="service-copy" id="guideCopy">衣装・家族撮影・兄弟撮影など、予約前に相談できる設計です。店舗ごとの実際の写真・説明へ差し替えられます。</p></div></div>
+        <div class="service-chips"><span class="service-chip">所要 <b id="guideDuration">約120分</b></span><span class="service-chip">会員登録なしで予約可</span><span class="service-chip">LINE相談対応</span></div>
+        <div class="service-points" id="servicePoints"></div>
+        <div class="service-actions"><button class="btn primary" data-scroll="#quick">この撮影の空き時間を見る</button><button class="btn secondary" id="changeServiceBtn">別の撮影を選ぶ</button></div>
+      </div>
     </div>
   </section>
 
@@ -130,17 +160,17 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
         <div class="cal-head">
           <div class="cal-head-top">
             <div class="month-nav">
-              <button class="icon-btn" id="prevMonth" aria-label="前の月">‹</button>
+              <button class="icon-btn" id="prevMonth" aria-label="前の月" title="前月">‹</button>
               <strong id="monthLabel">2026年10月</strong>
-              <button class="icon-btn" id="nextMonth" aria-label="次の月">›</button>
-              <button class="today-btn" id="todayMonth">今月</button>
+              <button class="icon-btn" id="nextMonth" aria-label="次の月" title="翌月">›</button>
+              <button class="today-btn" id="todayMonth">今月</button><select class="month-select" id="monthSelect" aria-label="月を選ぶ"></select>
             </div>
             <div class="view-switch">
               <button class="active" data-cal-view="month">月</button><button data-cal-view="week">週</button><button data-cal-view="day">日</button><button data-cal-view="list">一覧</button>
             </div>
           </div>
           <div class="legend"><span class="legend-item"><i class="dot d-ok"></i>予約可</span><span class="legend-item"><i class="dot d-few"></i>残りわずか</span><span class="legend-item"><i class="dot d-full"></i>受付終了</span><span class="legend-item"><i class="dot d-past"></i>過去日</span></div>
-          <div class="month-caption"><b>V1.3</b><span>前月・翌月・今月が実動。月／週／日／一覧は同じ予約データで連動します。</span></div>
+          <div class="month-caption"><b>V1.4</b><span>前月・翌月・今月・月選択が実動。月／週／日／一覧は同じ予約データで連動します。</span><span class="calendar-stat">この月の空き枠 <b id="monthSlotCount">0</b>件</span></div>
         </div>
         <div class="cal-view active" id="calViewMonth"><div class="desktop-month" id="desktopMonth"></div><div class="mobile-month" id="mobileMonth"></div></div>
         <div class="cal-view" id="calViewWeek"><div class="week-grid" id="weekGrid"></div></div>
@@ -165,7 +195,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
   <section class="section panel history-panel hidden" id="historyView"><div class="step-label">MY RESERVATION</div><h2>予約確認・撮影履歴</h2><div class="history-item current"><div><b>2026/10/10 10:00</b><span>七五三</span></div><div><button>変更</button><button>キャンセル</button></div></div><div class="history-item"><div><b>2024/11/03</b><span>3歳 七五三</span></div><div><small>撮影済み</small></div></div><div class="history-item"><div><b>2025/05/12</b><span>バースデー</span></div><div><small>撮影済み</small></div></div><div class="notice" style="margin-top:16px">DPRO連携では、生年月日・撮影履歴から「来月誕生日」「今年3・5・7歳」「前回撮影から1年」などの対象者を店舗側で抽出できます。</div></section>
 </main>
-<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準プロトタイプ V1.3</span></footer>
+<footer class="footer"><strong>PICTURE WEB RESERVATION</strong><span>DPRO PHOTO｜写真館向け予約WEB標準デモ V1.4</span></footer>
 <nav class="mobilebar"><button data-scroll="#menu">メニュー</button><button class="accent" data-view="quick">予約する</button><button>LINE相談</button></nav>
 <script>
 const views={quick:document.getElementById('quick'),form:document.getElementById('formView'),confirm:document.getElementById('confirmView'),complete:document.getElementById('completeView'),history:document.getElementById('historyView')};
@@ -182,6 +212,14 @@ const fixed={
  '2026-10-11':[['09:30','ok'],['14:00','ok']], '2026-10-12':[['11:00','ok'],['14:30','few']], '2026-10-14':[['10:00','ok']],
  '2026-10-16':[['13:00','few']], '2026-10-17':[['10:00','ok']], '2026-10-19':[['11:00','ok']], '2026-10-20':[['15:00','ok']],
  '2026-10-23':[['10:30','ok']], '2026-10-26':[['09:30','ok']], '2026-10-28':[['13:30','ok']], '2026-10-30':[['10:00','ok']], '2026-10-31':[['14:00','few']]
+};
+const serviceMeta={
+ 'お宮参り・赤ちゃん':{symbol:'B',sub:'赤ちゃんとご家族の今だけの表情を、ゆったり残す撮影。',copy:'授乳・おむつ替えなども想定し、余裕を持った予約枠にできます。',points:[['家族撮影','ご家族・きょうだい追加に対応'],['衣装相談','持込・レンタルどちらも案内可能'],['LINE相談','事前の持ち物相談にも対応']]},
+ '七五三':{symbol:'七',sub:'3・5・7歳の大切な節目を、家族らしく残す撮影。',copy:'衣装・家族撮影・兄弟撮影など、予約前に相談できる設計です。店舗ごとの実際の写真・説明へ差し替えられます。',points:[['年齢管理','3・5・7歳の対象者抽出へ連携'],['衣装相談','和装・洋装など店舗設定に対応'],['家族撮影','兄弟・家族追加も受付可能']]},
+ 'バースデー':{symbol:'B',sub:'毎年の成長を、自然な表情で残す記念撮影。',copy:'誕生月や前回撮影日とDPRO顧客情報をつなぎ、再来店施策にも活用できます。',points:[['誕生日連携','来月誕生日の対象者抽出'],['成長記録','過去撮影履歴と一緒に管理'],['LINE配信','対象者だけへ案内可能']]},
+ '入園・入学':{symbol:'入',sub:'制服・ランドセルと一緒に、新しい門出を残す撮影。',copy:'入園・入学・卒園・卒業など、季節イベントに合わせた予約メニューへ拡張できます。',points:[['季節対応','春の繁忙期枠を見やすく表示'],['兄弟撮影','同時撮影の相談に対応'],['持込対応','制服・ランドセル等の案内']]},
+ '成人式・卒業':{symbol:'成',sub:'振袖・袴・スーツで、節目の一日を美しく残す撮影。',copy:'撮影予約と衣装相談を分けず、同じ導線から必要情報を受付できる設計です。',points:[['衣装連携','振袖・袴・スーツ相談'],['長時間枠','150分などメニュー別時間設定'],['事前相談','LINEから衣装・持込相談']]},
+ 'その他記念':{symbol:'記',sub:'家族写真・長寿祝い・記念日など、自由度の高い撮影。',copy:'店舗独自メニューを追加しても、共通の予約UIで違和感なく運用できます。',points:[['自由設定','店舗独自の撮影メニュー対応'],['家族単位','家族ごとの履歴管理へ連携'],['相談受付','内容未定でもLINE相談可能']]}
 };
 function pad(n){return String(n).padStart(2,'0')}
 function iso(d){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
@@ -211,7 +249,25 @@ function slotsForDate(d){return generatedSlots(d).map(([t,s])=>({time:t,status:s
 function datesInRange(start,end){const out=[];for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1))out.push(new Date(d));return out}
 function monthDates(d){return datesInRange(new Date(d.getFullYear(),d.getMonth(),1),new Date(d.getFullYear(),d.getMonth()+1,0))}
 function allFutureSlotDays(){return datesInRange(DEMO_TODAY,new Date(2027,3,30)).filter(d=>slotsForDate(d).length)}
+
+function renderServiceGuide(){
+ const m=serviceMeta[service]||serviceMeta['七五三'];
+ document.getElementById('serviceSymbol').textContent=m.symbol;
+ document.getElementById('guideTitle').textContent=service;
+ document.getElementById('guideSub').textContent=m.sub;
+ document.getElementById('guideCopy').textContent=m.copy;
+ document.getElementById('guideDuration').textContent=`約${duration}分`;
+ document.getElementById('servicePoints').innerHTML=m.points.map(p=>`<div class="service-point"><b>${p[0]}</b><span>${p[1]}</span></div>`).join('');
+}
+function populateMonthSelect(){
+ const sel=document.getElementById('monthSelect'); if(!sel||sel.options.length)return;
+ for(let d=new Date(MIN_MONTH); d<=MAX_MONTH; d=new Date(d.getFullYear(),d.getMonth()+1,1)){
+  const o=document.createElement('option');o.value=monthKey(d);o.textContent=monthLabel(d);sel.appendChild(o);
+ }
+}
+function monthSlotCount(month){return monthDates(month).reduce((n,d)=>n+slotsForDate(d).length,0)}
 function sync(){
+ renderServiceGuide();
  document.getElementById('serviceTitle').textContent=service; document.getElementById('selectedService').textContent=service;
  document.getElementById('selectedDuration').textContent=`約${duration}分`; document.getElementById('confirmDuration').textContent=`約${duration}分`;
  ['summaryService','confirmService','completeService'].forEach(id=>document.getElementById(id).textContent=service);
@@ -279,6 +335,8 @@ function renderList(){
 }
 function renderCalendar(){
  document.getElementById('monthLabel').textContent=monthLabel(currentMonth);
+ const ms=document.getElementById('monthSelect'); if(ms) ms.value=monthKey(currentMonth);
+ const mc=document.getElementById('monthSlotCount'); if(mc) mc.textContent=monthSlotCount(currentMonth);
  document.getElementById('prevMonth').disabled=currentMonth<=MIN_MONTH; document.getElementById('nextMonth').disabled=currentMonth>=MAX_MONTH;
  renderDesktopMonth();renderMobileMonth();renderWeek();renderDay();renderList();
  document.querySelectorAll('[data-cal-view]').forEach(x=>x.classList.toggle('active',x.dataset.calView===calView));
@@ -291,6 +349,9 @@ function shiftMonth(delta){
 function setMonthToToday(){currentMonth=new Date(DEMO_TODAY.getFullYear(),DEMO_TODAY.getMonth(),1);selectedDate=new Date(DEMO_TODAY);renderCalendar()}
 function setCalView(view){calView=view;renderCalendar()}
 function setSelectedDate(isoText,switchToDay=false){const [y,m,d]=isoText.split('-').map(Number);selectedDate=new Date(y,m-1,d);currentMonth=new Date(y,m-1,1);if(switchToDay)calView='day';renderCalendar()}
+
+document.getElementById('monthSelect')?.addEventListener('change',e=>{const [y,m]=e.target.value.split('-').map(Number);currentMonth=new Date(y,m-1,1);selectedDate=new Date(y,m-1,1);renderCalendar()});
+document.getElementById('changeServiceBtn')?.addEventListener('click',()=>document.getElementById('menu').scrollIntoView({behavior:'smooth',block:'start'}));
 
 document.addEventListener('click',e=>{
  const slot=e.target.closest('[data-slot-date][data-slot-time]'); if(slot){const [y,m,d]=slot.dataset.slotDate.split('-').map(Number);chooseTime(new Date(y,m-1,d),slot.dataset.slotTime);return}
@@ -305,6 +366,7 @@ document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',(
 document.querySelectorAll('[data-cal-view]').forEach(b=>b.addEventListener('click',()=>setCalView(b.dataset.calView)));
 document.getElementById('prevMonth').addEventListener('click',()=>shiftMonth(-1));document.getElementById('nextMonth').addEventListener('click',()=>shiftMonth(1));document.getElementById('todayMonth').addEventListener('click',setMonthToToday);
 renderQuick();renderCalendar();sync();
+populateMonthSelect();
 </script>
 </body>
 </html>
