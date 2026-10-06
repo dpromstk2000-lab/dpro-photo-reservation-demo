@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="DPRO PHOTO RESERVATION STANDARD。写真館・フォトスタジオ向けのWEB予約デモ。撮影メニュー、空き枠、予約変更、キャンセル、料金確認、LINE相談まで一連の予約体験を確認できます。">
 <meta name="theme-color" content="#121511">
-<title>DPRO PHOTO RESERVATION｜写真館WEB予約デモ STANDARD V1.0</title>
+<title>DPRO PHOTO RESERVATION｜写真館WEB予約デモ STANDARD V1.1 SYSTEM LINKED</title>
 <style>
 :root{
   --bg:#f3f3ee;--paper:#fff;--ink:#151815;--muted:#666d66;--line:#dfe4dd;--line-strong:#cbd3c9;
@@ -42,11 +42,17 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 @media(max-width:420px){.menu-grid{grid-template-columns:1fr 1fr}.menu-photo{height:126px}.hero h1{font-size:40px}.brand-context-grid,.product-ready-grid{grid-template-columns:1fr}.brand-context-grid>div{min-height:auto}.mobile-date-slots{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 @media(prefers-contrast:more){:root{--line:#aeb6ad;--muted:#454a45}.btn.primary,.view-switch button.active{outline:2px solid #000}.menu-card.active{outline-width:3px}}
+
+.system-link-status{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:18px 0 0;padding:17px 20px;border:1px solid #d8e1d3;border-radius:16px;background:#f8fbf4;box-shadow:var(--shadow-soft)}
+.system-link-status div{min-width:0}.system-link-status small{display:block;color:#6b7866;font-size:9px;font-weight:900;letter-spacing:.13em}.system-link-status strong{display:block;margin-top:3px;font-size:15px}.system-link-status span{display:block;margin-top:3px;color:var(--muted);font-size:11px;line-height:1.6}.system-link-status>b{flex:0 0 auto;border-radius:999px;padding:6px 9px;background:#e9efe4;color:#586750;font-size:9px;letter-spacing:.08em}
+.system-link-status.is-live{border-color:#cbdab9;background:#f6faef}.system-link-status.is-live>b{background:#dcebc8;color:#466126}.system-link-status.is-fallback{border-color:#ead7b7;background:#fffaf0}.system-link-status.is-fallback>b{background:#f5e6c9;color:#835b20}
+@media(max-width:620px){.system-link-status{align-items:flex-start}.system-link-status>b{margin-top:2px}}
+
 </style>
 </head>
 <body>
 <a class="skip-link" href="#menu">予約内容へ移動</a>
-<div class="demo-badge">DPRO STANDARD DEMO｜予約は送信されません</div>
+<div class="demo-badge">DPRO STANDARD V1.1｜SYSTEM LINKED DEMO</div>
 <header class="header">
   <div class="logo"><div class="logo-mark">D</div><div><div class="logo-main">DPRO PHOTO</div><div class="logo-sub">RESERVATION STANDARD</div></div></div>
   <nav class="header-nav"><button type="button" data-view="history">予約確認</button><button type="button" class="line" data-line-consult>LINE相談</button></nav>
@@ -70,19 +76,25 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   </section>
 
   <section class="brand-context" aria-label="DPRO PHOTO RESERVATION STANDARDの特徴">
-    <div class="brand-context-head"><div><small>DPRO PHOTO RESERVATION STANDARD</small><strong>店舗ごとの運用を活かし、予約体験をわかりやすく。</strong></div><span>STANDARD V1.0</span></div>
+    <div class="brand-context-head"><div><small>DPRO PHOTO RESERVATION STANDARD</small><strong>LINE・WEB・DPROシステムを、ひとつの設定でつなぐ。</strong></div><span>STANDARD V1.1</span></div>
     <div class="brand-context-grid">
       <div><small>RESERVATION</small><b>オンライン予約中心</b><span>電話予約ではなく、WEBで迷わず完結する導線を重視。</span></div>
       <div><small>BOOKING WINDOW</small><b>予約受付期間を設定</b><span>当日・数週間・数か月先など店舗運用に合わせて変更。</span></div>
       <div><small>BUSINESS HOURS</small><b>営業時間・休業日を設定</b><span>曜日別営業時間や臨時休業にも対応する前提。</span></div>
       <div><small>BRAND DESIGN</small><b>ロゴ・配色・写真を最適化</b><span>各店舗のブランドや既存サイトに合わせて調整。</span></div>
     </div>
-    <p>※ 本ページはDPRO共通デモです。表示中の料金・空き枠・予約規定・写真はサンプルで、導入時に各店舗の実運用へ合わせて設定します。</p>
+    <p>※ 本ページはDPRO共通デモです。プラン・料金・受付期間・営業カレンダーはDPROデモシステムの公開設定を読み込みます。予約確定操作は安全のためデモ送信です。</p>
+  </section>
+
+
+  <section class="system-link-status" id="systemLinkStatus" aria-live="polite">
+    <div><small>DPRO SYSTEM LINK</small><strong id="systemLinkTitle">DPROシステムと接続確認中</strong><span id="systemLinkDetail">料金・営業時間・休日・予約受付期間を読み込んでいます。</span></div>
+    <b id="systemLinkBadge">CONNECTING</b>
   </section>
 
   <section class="section" id="menu">
-    <div class="section-head"><div><div class="step-label">STEP 1</div><h2>何を撮りますか？</h2></div><p>七五三・バースデー・入園入学・家族写真など、一般的な撮影シーンをサンプル表示。実店舗ではメニュー名・写真・料金を自由に差し替えられます。</p></div>
-    <div class="menu-grid">
+    <div class="section-head"><div><div class="step-label">STEP 1</div><h2>何を撮りますか？</h2></div><p>DPROシステムに登録された公開中の撮影プランと料金を表示します。オーナー側の設定変更をWEB予約へ反映する共通基準です。</p></div>
+    <div class="menu-grid" id="livePlanGrid">
       <button class="menu-card" type="button" data-service="お宮参り・赤ちゃん" data-duration="120"><div class="menu-photo m-baby"><span>Baby</span></div><div class="menu-meta"><strong>お宮参り・赤ちゃん</strong><small>Newborn / Baby</small><span class="menu-price">¥16,500〜</span></div></button>
       <button class="menu-card active" type="button" data-service="七五三" data-duration="120"><div class="menu-photo m-753"><span>七五三</span></div><div class="menu-meta"><strong>七五三</strong><small>3・5・7歳</small><span class="menu-price">¥22,000〜</span></div></button>
       <button class="menu-card" type="button" data-service="バースデー" data-duration="90"><div class="menu-photo m-birthday"><span>Birthday</span></div><div class="menu-meta"><strong>バースデー</strong><small>Birthday</small><span class="menu-price">¥16,500〜</span></div></button>
@@ -127,7 +139,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <div class="calendar hidden" id="calendar"><div class="calendar-shell">
       <div class="cal-head"><div class="cal-head-top"><div class="month-nav"><button class="icon-btn" type="button" id="prevMonth" aria-label="前の月">‹</button><strong id="monthLabel">2026年10月</strong><button class="icon-btn" type="button" id="nextMonth" aria-label="次の月">›</button><button class="today-btn" type="button" id="todayMonth">今月</button><select class="month-select" id="monthSelect" aria-label="月を選ぶ"></select></div><div class="view-switch"><button class="active" type="button" data-cal-view="month">月</button><button type="button" data-cal-view="week">週</button><button type="button" data-cal-view="day">日</button><button type="button" data-cal-view="list">一覧</button></div></div>
       <div class="legend"><span class="legend-item"><i class="dot d-ok"></i>予約可</span><span class="legend-item"><i class="dot d-few"></i>残りわずか</span><span class="legend-item"><i class="dot d-past"></i>受付対象外</span></div>
-      <div class="month-caption"><b>STANDARD V1.0</b><span>DPRO写真館WEB予約の共通公開基準。店舗ごとの設定へ展開できます。</span><span class="calendar-stat">この月の空き枠 <b id="monthSlotCount">0</b>件</span></div></div>
+      <div class="month-caption"><b>STANDARD V1.1</b><span>DPROシステムの料金・受付期間・営業日・臨時休業を予約WEBへ同期。</span><span class="calendar-stat">この月の空き枠 <b id="monthSlotCount">0</b>件</span></div></div>
       <div class="cal-view active" id="calViewMonth"><div class="desktop-month" id="desktopMonth"></div><div class="mobile-month" id="mobileMonth"></div></div>
       <div class="cal-view" id="calViewWeek"><div class="week-grid" id="weekGrid"></div></div>
       <div class="cal-view" id="calViewDay"><div id="dayView"></div></div>
@@ -189,20 +201,20 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 <div class="modal-backdrop hidden" id="summaryModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="summaryModalTitle"><div class="modal-card"><div class="step-label">RESERVATION SUMMARY</div><h3 id="summaryModalTitle">現在の選択内容</h3><div class="summary-detail-grid"><div><small>撮影</small><b id="sheetService">七五三</b></div><div><small>プラン</small><b id="sheetPlan">スタンダード</b></div><div><small>オプション</small><b id="sheetOptions">衣装相談</b></div><div><small>日時</small><b id="sheetTime">2026/10/10 10:00</b></div><div class="wide-row"><small>料金目安</small><b id="sheetPrice">¥33,000（税込・デモ）</b></div></div><div class="modal-actions"><button type="button" data-close-modal="summaryModal">閉じる</button><button type="button" class="primary" id="summaryContinue">予約を続ける</button></div></div></div>
 <div class="modal-backdrop hidden" id="policyModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle"><div class="modal-card"><div class="step-label">RESERVATION POLICY</div><h3 id="policyModalTitle">変更・キャンセルについて</h3><p>これはDPRO標準デモの表示例です。本番では店舗ごとの規定・期限・連絡方法を設定して表示します。</p><div class="policy-list"><div><b>予約変更</b><span>空き枠から新しい日時を選択して変更できる想定です。</span></div><div><b>キャンセル</b><span>受付期限・キャンセル料等は店舗規定を表示します。</span></div><div><b>店舗への相談</b><span>変更できない内容はLINE等で相談へ切り替えられます。</span></div></div><div class="modal-actions"><button type="button" data-close-modal="policyModal">閉じる</button></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite">デモ：LINE連携を確認しました</div>
-<footer class="footer"><strong>DPRO PHOTO WEB RESERVATION</strong><span>DPRO PHOTO｜写真館WEB予約 共通デモ STANDARD V1.0</span></footer>
+<footer class="footer"><strong>DPRO PHOTO WEB RESERVATION</strong><span>DPRO PHOTO｜LINE + WEB + SYSTEM 共通デモ STANDARD V1.1</span></footer>
 <div class="mobile-summary" id="mobileSummary"><div><small>選択中</small><b><span id="mobileSummaryService">七五三</span>・<span id="mobileSummaryPlan">スタンダード</span></b><span id="mobileSummaryPrice">¥33,000（税込・デモ）</span></div><button type="button" id="openSummarySheet">内容</button></div>
 <nav class="mobilebar"><button type="button" data-scroll="#menu">メニュー</button><button type="button" class="accent" data-view="quick">予約する</button><button type="button" data-line-consult>LINE相談</button></nav>
 <script>
 'use strict';
-const DEMO_VERSION='STANDARD V1.0';
-const DEMO_TODAY=new Date(2026,9,6);
-const MIN_MONTH=new Date(2026,9,1);
-const MAX_MONTH=new Date(2027,0,1);
-const MAX_BOOKING_DATE=new Date(2027,0,5);
-const DRAFT_KEY='dpro_photo_standard_v10_draft';
-const STATE_KEY='dpro_photo_standard_v10_state';
+const DEMO_VERSION='STANDARD V1.1';
+const DEMO_TODAY=(()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())})();
+let MIN_MONTH=new Date(DEMO_TODAY.getFullYear(),DEMO_TODAY.getMonth(),1);
+let MAX_BOOKING_DATE=new Date(DEMO_TODAY.getFullYear(),DEMO_TODAY.getMonth()+3,DEMO_TODAY.getDate());
+let MAX_MONTH=new Date(MAX_BOOKING_DATE.getFullYear(),MAX_BOOKING_DATE.getMonth(),1);
+const DRAFT_KEY='dpro_photo_standard_v11_draft';
+const STATE_KEY='dpro_photo_standard_v11_state';
 const views={quick:document.getElementById('quick'),form:document.getElementById('formView'),confirm:document.getElementById('confirmView'),complete:document.getElementById('completeView'),history:document.getElementById('historyView')};
-let service='七五三',duration=120,time='2026/10/10 10:00',plan='スタンダード',selectedOptions=new Map([['衣装相談',0]]),isChanging=false,pendingChangeTime='',currentMonth=new Date(2026,9,1),selectedDate=new Date(2026,9,10),calView='month',bookingMode='quick';
+let service='七五三',duration=120,time='',plan='スタンダード',selectedOptions=new Map(),isChanging=false,pendingChangeTime='',currentMonth=new Date(DEMO_TODAY.getFullYear(),DEMO_TODAY.getMonth(),1),selectedDate=new Date(DEMO_TODAY),calView='month',bookingMode='quick';
 const basePrices={'お宮参り・赤ちゃん':[16500,27500],'七五三':[22000,33000],'バースデー':[16500,27500],'入園・入学':[16500,27500],'成人式・卒業':[33000,49500],'その他記念':[16500,27500]};
 const serviceMeta={
  'お宮参り・赤ちゃん':{symbol:'B',sub:'赤ちゃんとご家族の今だけの表情を、ゆったり残す撮影。',copy:'授乳・おむつ替えなども想定し、余裕を持った予約枠にできます。',points:[['家族撮影','ご家族・きょうだい追加に対応'],['衣装相談','持込・レンタルどちらも案内可能'],['LINE相談','事前の持ち物相談にも対応']]},
@@ -226,17 +238,17 @@ const fullDateLabel=d=>`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}�
 const monthLabel=d=>`${d.getFullYear()}年${d.getMonth()+1}月`;
 function datesInRange(start,end){const out=[];for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1))out.push(new Date(d));return out}
 function monthDates(d){return datesInRange(new Date(d.getFullYear(),d.getMonth(),1),new Date(d.getFullYear(),d.getMonth()+1,0))}
-function generatedSlots(d){if(isPast(d)||startOfDay(d)>startOfDay(MAX_BOOKING_DATE))return[];const key=iso(d);if(fixed[key])return fixed[key];const dow=d.getDay(),day=d.getDate(),seed=d.getFullYear()*10000+(d.getMonth()+1)*100+day;if(dow===4)return[];if(dow===1&&day%2===0)return[['11:00','ok']];if(dow===2&&day%3===0)return[['15:00','ok']];if(dow===3)return day%4===0?[['10:00','ok'],['13:30','ok']]:[['10:00','ok']];if(dow===5)return seed%4===0?[['10:00','ok'],['13:00','few']]:[['10:00','ok']];if(dow===6)return seed%3===0?[['10:00','ok'],['13:00','few'],['15:30','ok']]:[['10:00','ok'],['14:00',seed%2?'ok':'few']];if(dow===0&&day%2===1)return[['09:30','ok'],['14:00','ok']];return[]}
+function generatedSlots(d){if(isPast(d)||startOfDay(d)>startOfDay(MAX_BOOKING_DATE))return[];const key=iso(d);if(window.__DPRO_LINKED_READY&&window.__DPRO_LINKED_DAY_MAP instanceof Map){const x=window.__DPRO_LINKED_DAY_MAP.get(key);if(!x||!['available','limited'].includes(x.status))return[];const tone=x.status==='limited'?'few':'ok',out=[];if(x.first_available_time)out.push([String(x.first_available_time).slice(0,5),tone]);if(x.last_available_time&&String(x.last_available_time).slice(0,5)!==String(x.first_available_time||'').slice(0,5))out.push([String(x.last_available_time).slice(0,5),tone]);return out}if(fixed[key])return fixed[key];const dow=d.getDay(),day=d.getDate(),seed=d.getFullYear()*10000+(d.getMonth()+1)*100+day;if(dow===4)return[];if(dow===1&&day%2===0)return[['11:00','ok']];if(dow===2&&day%3===0)return[['15:00','ok']];if(dow===3)return day%4===0?[['10:00','ok'],['13:30','ok']]:[['10:00','ok']];if(dow===5)return seed%4===0?[['10:00','ok'],['13:00','few']]:[['10:00','ok']];if(dow===6)return seed%3===0?[['10:00','ok'],['13:00','few'],['15:30','ok']]:[['10:00','ok'],['14:00',seed%2?'ok':'few']];if(dow===0&&day%2===1)return[['09:30','ok'],['14:00','ok']];return[]}
 function slotsForDate(d){return generatedSlots(d).map(([t,s])=>({time:t,status:s}))}
 function allFutureSlotDays(){return datesInRange(DEMO_TODAY,MAX_BOOKING_DATE).filter(d=>slotsForDate(d).length)}
 function currentBasePrice(){if(plan==='相談して決める')return null;const p=basePrices[service]||[16500,27500];return plan==='シンプル'?p[0]:p[1]}
 function optionTotal(){return[...selectedOptions.values()].reduce((a,b)=>a+Number(b||0),0)}
 function currentPrice(){const b=currentBasePrice();return b===null?null:b+optionTotal()}
-function priceText(short=false){const p=currentPrice();if(p===null)return short?'料金相談':'料金相談（予約前に確認）';return`¥${p.toLocaleString('ja-JP')}${short?'':'（税込・デモ）'}`}
+function priceText(short=false){const p=currentPrice();if(p===null)return short?'料金相談':'料金相談（予約前に確認）';return`¥${p.toLocaleString('ja-JP')}${short?'':'（税込・DPRO設定）'}`}
 function optionsText(){return selectedOptions.size?[...selectedOptions.keys()].join('・'):'なし'}
 function show(name){Object.values(views).forEach(v=>v?.classList.add('hidden'));const v=views[name];v?.classList.remove('hidden');if(name!=='quick')v?.scrollIntoView({behavior:'smooth',block:'start'});if(name==='confirm')updateConfirm();if(name==='history')sync()}
 function renderServiceGuide(){const m=serviceMeta[service];document.getElementById('serviceSymbol').textContent=m.symbol;document.getElementById('guideTitle').textContent=service;document.getElementById('guideSub').textContent=m.sub;document.getElementById('guideCopy').textContent=m.copy;document.getElementById('guideDuration').textContent=`約${duration}分`;document.getElementById('servicePoints').innerHTML=m.points.map(([a,b])=>`<div class="service-point"><b>${a}</b><span>${b}</span></div>`).join('')}
-function updatePrices(){const pp=basePrices[service]||[16500,27500];document.querySelectorAll('[data-plan-price="シンプル"]').forEach(el=>el.innerHTML=`¥${pp[0].toLocaleString('ja-JP')}<small>税込・デモ料金</small>`);document.querySelectorAll('[data-plan-price="スタンダード"]').forEach(el=>el.innerHTML=`¥${pp[1].toLocaleString('ja-JP')}<small>税込・デモ料金</small>`);document.querySelectorAll('[data-plan-price="相談して決める"]').forEach(el=>el.innerHTML='料金相談<small>予約前に確認</small>')}
+function updatePrices(){const pp=basePrices[service]||[16500,27500];document.querySelectorAll('[data-plan-price="シンプル"]').forEach(el=>el.innerHTML=`¥${pp[0].toLocaleString('ja-JP')}<small>税込・DPRO設定</small>`);document.querySelectorAll('[data-plan-price="スタンダード"]').forEach(el=>el.innerHTML=`¥${pp[1].toLocaleString('ja-JP')}<small>税込・DPRO設定</small>`);document.querySelectorAll('[data-plan-price="相談して決める"]').forEach(el=>el.innerHTML='料金相談<small>予約前に確認</small>')}
 function sync(){renderServiceGuide();updatePrices();const pairs={serviceTitle:service,selectedService:service,selectedPlan:plan,selectedOptions:optionsText(),selectedPrice:priceText(),selectedDuration:`約${duration}分`,summaryService:service,summaryPlan:plan,summaryTime:time,summaryPrice:priceText(),confirmService:service,confirmPlan:plan,confirmTime:time,confirmDuration:`約${duration}分`,confirmOptions:optionsText(),confirmPrice:priceText(),completeService:service,completePlan:plan,completeTime:time,completePrice:priceText(),completeOptions:optionsText(),historyTime:time,historyService:`${service} ／ ${plan}`,historyOptions:optionsText(),historyPrice:priceText(),totalPrice:priceText(),optionSummary:optionsText(),mobileSummaryService:service,mobileSummaryPlan:plan,mobileSummaryPrice:priceText(),sheetService:service,sheetPlan:plan,sheetOptions:optionsText(),sheetTime:time,sheetPrice:priceText()};for(const[id,val]of Object.entries(pairs)){const el=document.getElementById(id);if(el)el.textContent=val}document.querySelectorAll('[data-plan]').forEach(x=>x.classList.toggle('active',x.dataset.plan===plan));saveBookingState();refreshConsultPreview()}
 function slotButton(d,s,cls='slot'){return`<button type="button" class="${cls} ${s.status==='few'?'few-slot':''}" data-slot-date="${iso(d)}" data-slot-time="${s.time}" aria-label="${fullDateLabel(d)} ${s.time} ${s.status==='few'?'残り1枠':'予約可'}"><b>${s.time}</b><small class="${s.status==='few'?'few':'ok'}">${s.status==='few'?'△ 残り1枠':'○ 予約可'}</small>${cls==='slot'?`<em>${s.status==='few'?'△':'○'}</em>`:''}</button>`}
 function renderQuick(mode=bookingMode){bookingMode=mode;document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x.dataset.mode===mode));const cal=document.getElementById('calendar');if(mode==='calendar'){cal.classList.remove('hidden');document.getElementById('slotGrid').innerHTML='';renderCalendar();return}cal.classList.add('hidden');let days=allFutureSlotDays();if(mode==='weekend')days=days.filter(d=>[0,6].includes(d.getDay()));days=days.slice(0,3);document.getElementById('slotGrid').innerHTML=days.length?days.map(d=>`<article class="day"><div class="day-head"><strong>${dateLabel(d)}</strong>${sameDate(d,DEMO_TODAY)?'<span class="tag">今日</span>':''}</div>${slotsForDate(d).slice(0,3).map(s=>slotButton(d,s)).join('')}</article>`).join(''):'<div class="empty-state"><strong>条件に合う空き枠がありません</strong><span>カレンダーから別の日付をご確認ください。</span></div>'}
@@ -245,7 +257,7 @@ function renderDesktopMonth(){const h=document.getElementById('desktopMonth');le
 function renderMobileMonth(){const h=document.getElementById('mobileMonth');h.innerHTML=monthDates(currentMonth).map(d=>{if(isPast(d)&&!sameDate(d,DEMO_TODAY))return'';const slots=slotsForDate(d);return`<article class="mobile-date-card"><div class="mobile-date-head"><strong>${dateLabel(d)}</strong>${sameDate(d,DEMO_TODAY)?'<span class="tag">今日</span>':holidays[iso(d)]?'<span class="tag">祝日</span>':''}</div>${slots.length?`<div class="mobile-date-slots">${slots.map(s=>`<button type="button" data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}<small>${s.status==='few'?'残り1枠':'予約可'}</small></button>`).join('')}</div>`:`<span class="closed">${startOfDay(d)>startOfDay(MAX_BOOKING_DATE)?'受付期間外':'空き枠なし'}</span>`}</article>`}).join('')||'<div class="empty-state"><strong>この月に予約可能な枠はありません</strong></div>'}
 function weekStart(d){const x=new Date(d);x.setDate(x.getDate()-x.getDay());return x}
 function renderWeek(){const start=weekStart(selectedDate),days=datesInRange(start,new Date(start.getFullYear(),start.getMonth(),start.getDate()+6));document.getElementById('weekGrid').innerHTML=days.map(d=>`<div class="week-col"><h4>${pad(d.getMonth()+1)}/${pad(d.getDate())}<b>${weekdayJP(d)}${holidays[iso(d)]?'・祝':''}</b></h4>${isPast(d)?'<span class="closed">過去日</span>':startOfDay(d)>startOfDay(MAX_BOOKING_DATE)?'<span class="closed">受付期間外</span>':slotsForDate(d).length?slotsForDate(d).map(s=>`<button type="button" class="week-slot" data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}<small>${s.status==='few'?'残り1枠':`約${duration}分`}</small></button>`).join(''):'<span class="closed">空き枠なし</span>'}</div>`).join('')}
-function renderDay(){const slots=slotsForDate(selectedDate),past=isPast(selectedDate),beyond=startOfDay(selectedDate)>startOfDay(MAX_BOOKING_DATE);document.getElementById('dayView').innerHTML=`<div class="day-view-card"><div class="day-view-title"><div><h3>${fullDateLabel(selectedDate)}</h3><span class="closed">選択中の日付。前日・翌日へ移動できます。</span></div><div class="day-view-date-nav"><button type="button" data-day-shift="-1">前日</button><button type="button" data-day-today>今日</button><button type="button" data-day-shift="1">翌日</button></div></div>${past?'<div class="empty-state"><strong>過去日は予約できません</strong></div>':beyond?'<div class="empty-state"><strong>3か月先より後は受付期間外です</strong></div>':slots.length?`<div class="day-view-slots">${slots.map(s=>slotButton(selectedDate,s)).join('')}</div>`:'<div class="empty-state"><strong>この日は空き枠がありません</strong></div>'}</div>`}
+function renderDay(){const slots=slotsForDate(selectedDate),past=isPast(selectedDate),beyond=startOfDay(selectedDate)>startOfDay(MAX_BOOKING_DATE);document.getElementById('dayView').innerHTML=`<div class="day-view-card"><div class="day-view-title"><div><h3>${fullDateLabel(selectedDate)}</h3><span class="closed">選択中の日付。前日・翌日へ移動できます。</span></div><div class="day-view-date-nav"><button type="button" data-day-shift="-1">前日</button><button type="button" data-day-today>今日</button><button type="button" data-day-shift="1">翌日</button></div></div>${past?'<div class="empty-state"><strong>過去日は予約できません</strong></div>':beyond?'<div class="empty-state"><strong>店舗設定の予約受付期間外です</strong></div>':slots.length?`<div class="day-view-slots">${slots.map(s=>slotButton(selectedDate,s)).join('')}</div>`:'<div class="empty-state"><strong>この日は空き枠がありません</strong></div>'}</div>`}
 function renderList(){const days=monthDates(currentMonth).filter(d=>slotsForDate(d).length&&!isPast(d));document.getElementById('listView').innerHTML=days.length?days.map(d=>`<div class="list-row"><strong>${dateLabel(d)}</strong><div class="list-time">${slotsForDate(d).map(s=>`<button type="button" data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}</button>`).join('')}</div><span>${holidays[iso(d)]||''}</span></div>`).join(''):'<div class="empty-state"><strong>この月に予約可能な枠はありません</strong></div>'}
 function populateMonthSelect(){const s=document.getElementById('monthSelect');s.innerHTML='';for(let d=new Date(MIN_MONTH);d<=MAX_MONTH;d=new Date(d.getFullYear(),d.getMonth()+1,1)){const o=document.createElement('option');o.value=monthKey(d);o.textContent=monthLabel(d);s.appendChild(o)}}
 function monthSlotCount(m){return monthDates(m).reduce((n,d)=>n+slotsForDate(d).length,0)}
@@ -291,5 +303,160 @@ document.getElementById('changeBookingBtn').addEventListener('click',()=>{isChan
 document.getElementById('downloadIcs').addEventListener('click',()=>{const m=time.match(/(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2})/);if(!m)return;const[_,y,mo,d,h,mi]=m,start=`${y}${mo}${d}T${h}${mi}00`,endD=new Date(Number(y),Number(mo)-1,Number(d),Number(h),Number(mi)+duration),end=`${endD.getFullYear()}${pad(endD.getMonth()+1)}${pad(endD.getDate())}T${pad(endD.getHours())}${pad(endD.getMinutes())}00`,ics=`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//DPRO PHOTO//JP\r\nBEGIN:VEVENT\r\nDTSTART:${start}\r\nDTEND:${end}\r\nSUMMARY:${service} ${plan}（DPRO PHOTO DEMO）\r\nDESCRIPTION:予約番号 DPR-PHOTO-001 / ${priceText()}\r\nEND:VEVENT\r\nEND:VCALENDAR`;const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='DPRO_PHOTO_STANDARD_DEMO_RESERVATION.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 restoreBookingState();populateMonthSelect();restoreDraft();document.querySelectorAll('[data-service]').forEach(x=>x.classList.toggle('active',x.dataset.service===service));document.querySelectorAll('[data-option]').forEach(x=>x.checked=selectedOptions.has(x.dataset.option));renderQuick();renderCalendar();sync();refreshConsultPreview();
 </script>
+
+<script>
+(() => {
+  "use strict";
+  const API="https://cbknucemarcpbscirzyv.supabase.co/functions/v1/dpro-photo-product-ready-gateway-v3";
+  const CAL="https://cbknucemarcpbscirzyv.supabase.co/functions/v1/dpro-photo-product-ready-gateway-v8";
+  const linked={config:null,plans:[],options:[],selected:null};
+  window.__DPRO_LINKED_READY=false;
+  window.__DPRO_LINKED_DAY_MAP=new Map();
+
+  const grid=document.getElementById("livePlanGrid");
+  const status=document.getElementById("systemLinkStatus");
+  const title=document.getElementById("systemLinkTitle");
+  const detail=document.getElementById("systemLinkDetail");
+  const badge=document.getElementById("systemLinkBadge");
+
+  function html(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+  function addDays(date,days){const d=new Date(date);d.setDate(d.getDate()+days);return d}
+  function fmtYmd(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+  async function get(url){const r=await fetch(url,{headers:{Accept:"application/json"},cache:"no-store"});const p=await r.json().catch(()=>null);if(!r.ok||p?.ok===false)throw new Error(p?.error||`HTTP ${r.status}`);return p}
+  function setStatus(mode,t,d){
+    status.classList.remove("is-live","is-fallback");
+    if(mode)status.classList.add(mode);
+    title.textContent=t;detail.textContent=d;
+    badge.textContent=mode==="is-live"?"SYSTEM LINKED":mode==="is-fallback"?"SAMPLE FALLBACK":"CONNECTING";
+  }
+  function planSymbol(p){const n=String(p.plan_name||"");if(n.includes("七五三"))return"七";if(n.includes("成人"))return"成";if(n.includes("家族"))return"家";if(n.includes("証明"))return"証";if(n.includes("プロフィール"))return"P";if(n.includes("マタニティ"))return"M";if(n.includes("ペット"))return"Pet";return"撮"}
+  function planClass(i){return["m-753","m-family","m-adult","m-school","m-birthday","m-baby"][i%6]}
+  function businessSummary(){
+    const hours=Array.isArray(linked.config?.business_hours)?linked.config.business_hours:[];
+    const names=["日","月","火","水","木","金","土"];
+    const closed=hours.filter(x=>x.is_closed).map(x=>names[Number(x.weekday)]+"曜").join("・")||"なし";
+    const days=Number(linked.config?.settings?.reservation_open_days_ahead||180);
+    const months=Math.max(1,Math.round(days/30));
+    return `公開プラン ${linked.plans.length}件｜予約受付 最大${months}か月｜定休日 ${closed}`;
+  }
+  function renderPlans(){
+    if(!grid||!linked.plans.length)return;
+    grid.innerHTML=linked.plans.map((p,i)=>`<button class="menu-card ${i===0?"active":""}" type="button" data-live-plan-id="${html(p.id)}"><div class="menu-photo ${planClass(i)}"><span>${html(planSymbol(p))}</span></div><div class="menu-meta"><strong>${html(p.plan_name)}</strong><small>${html(p.description||`所要 ${p.duration_minutes}分`)}</small><span class="menu-price">${html(p.price_label||`¥${Number(p.base_price||0).toLocaleString("ja-JP")}〜`)}</span></div></button>`).join("");
+  }
+  function renderOptions(){
+    const box=document.querySelector(".option-grid");
+    if(!box)return;
+    if(!linked.options.length){box.innerHTML='<div class="price-note">追加オプションは店舗設定により表示されます。</div>';return}
+    box.innerHTML=linked.options.map(o=>`<label class="option-card"><input type="checkbox" data-live-option="${html(o.code)}" data-option="${html(o.name)}" data-option-price="0"><span><b>${html(o.name)}</b><small>DPROシステムの予約オプション</small></span><em>${html(o.price_label||"要相談")}</em></label>`).join("");
+  }
+  function updateSelectedPlanUi(p){
+    const simple=document.querySelector('[data-plan="シンプル"]');
+    const standard=document.querySelector('[data-plan="スタンダード"]');
+    const consult=document.querySelector('[data-plan="相談して決める"]');
+    if(simple)simple.hidden=true;if(consult)consult.hidden=true;
+    if(standard){
+      standard.hidden=false;
+      standard.querySelector("b").textContent=p.plan_name;
+      standard.querySelector("small").textContent=p.description||"DPROシステム登録プラン";
+      const em=standard.querySelector("em");if(em)em.textContent="DPRO登録";
+    }
+    const head=document.querySelector(".plan-selector-head span");
+    if(head)head.textContent="プラン名・料金・所要時間はDPROシステムの設定を表示しています。";
+  }
+  async function loadCalendar(p){
+    window.__DPRO_LINKED_READY=false;
+    window.__DPRO_LINKED_DAY_MAP=new Map();
+    const globalDays=Number(linked.config?.settings?.reservation_open_days_ahead||180);
+    const planDays=Number(p.booking_open_days||globalDays);
+    const maxDays=Math.max(1,Math.min(globalDays,planDays,180));
+    MAX_BOOKING_DATE=addDays(DEMO_TODAY,maxDays);
+    MAX_MONTH=new Date(MAX_BOOKING_DATE.getFullYear(),MAX_BOOKING_DATE.getMonth(),1);
+    MIN_MONTH=new Date(DEMO_TODAY.getFullYear(),DEMO_TODAY.getMonth(),1);
+    currentMonth=new Date(MIN_MONTH);
+    selectedDate=new Date(DEMO_TODAY);
+
+    const requests=[];
+    for(let start=0;start<=maxDays;start+=42){
+      const end=Math.min(maxDays,start+41);
+      const u=new URL(`${CAL}/api/public/calendar-summary`);
+      u.searchParams.set("from",fmtYmd(addDays(DEMO_TODAY,start)));
+      u.searchParams.set("to",fmtYmd(addDays(DEMO_TODAY,end)));
+      u.searchParams.set("plan_id",p.id);
+      requests.push(get(u.toString()));
+    }
+    const payloads=await Promise.all(requests);
+    payloads.forEach(x=>(x.days||[]).forEach(day=>{
+      window.__DPRO_LINKED_DAY_MAP.set(day.date,day);
+      if(day.event?.title) holidays[day.date]=day.event.title;
+    }));
+    window.__DPRO_LINKED_READY=true;
+
+    const first=[...window.__DPRO_LINKED_DAY_MAP.values()].find(x=>["available","limited"].includes(x.status)&&x.first_available_time);
+    if(first){
+      const [y,m,d]=first.date.split("-").map(Number);
+      selectedDate=new Date(y,m-1,d);currentMonth=new Date(y,m-1,1);
+      time=`${first.date.replaceAll("-","/")} ${String(first.first_available_time).slice(0,5)}`;
+    }else{
+      time="";
+    }
+    populateMonthSelect();renderQuick();renderCalendar();sync();
+  }
+  async function selectPlan(id,scroll=false){
+    const p=linked.plans.find(x=>x.id===id);if(!p)return;
+    linked.selected=p;
+    service=p.plan_name;duration=Number(p.duration_minutes||60);plan="スタンダード";selectedOptions=new Map();
+    basePrices[service]=[Number(p.base_price||0),Number(p.base_price||0)];
+    serviceMeta[service]={
+      symbol:planSymbol(p),
+      sub:p.description||"DPROシステムに登録された撮影プランです。",
+      copy:`料金・所要時間・受付曜日・予約期間をDPROシステムから読み込んでいます。${p.belongings_guide?` 持ち物：${p.belongings_guide}`:""}`,
+      points:[
+        ["料金連携",p.price_label||`¥${Number(p.base_price||0).toLocaleString("ja-JP")}〜`],
+        ["受付期間",`${Math.max(1,Math.round(Number(p.booking_open_days||180)/30))}か月先まで`],
+        ["営業カレンダー","定休日・臨時休業を自動反映"]
+      ]
+    };
+    grid.querySelectorAll("[data-live-plan-id]").forEach(b=>b.classList.toggle("active",b.dataset.livePlanId===id));
+    updateSelectedPlanUi(p);renderOptions();sync();
+    setStatus("is-live","DPROシステムと同期中",`${p.plan_name}の空き枠・休業日を確認しています。`);
+    await loadCalendar(p);
+    setStatus("is-live","DPROシステム連携中",businessSummary());
+    if(scroll)document.getElementById("serviceGuide")?.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+  grid?.addEventListener("click",e=>{
+    const b=e.target.closest("[data-live-plan-id]");if(!b)return;
+    selectPlan(b.dataset.livePlanId,true).catch(err=>setStatus("is-fallback","システム連携を確認できませんでした",err.message||"サンプル表示へ切り替えています。"));
+  });
+  document.querySelector(".option-grid")?.addEventListener("change",e=>{
+    const cb=e.target.closest("[data-live-option]");if(!cb)return;
+    if(cb.checked)selectedOptions.set(cb.dataset.option,0);else selectedOptions.delete(cb.dataset.option);
+    sync();
+  });
+
+  async function boot(){
+    try{
+      setStatus("","DPROシステムと接続確認中","料金・営業時間・休日・予約受付期間を読み込んでいます。");
+      const [config,plans,options]=await Promise.all([
+        get(`${API}/api/public/config`),
+        get(`${API}/api/public/plans`),
+        get(`${API}/api/public/reservation-options`)
+      ]);
+      linked.config=config;
+      linked.plans=Array.isArray(plans.plans)?plans.plans:[];
+      linked.options=Array.isArray(options.options)?options.options:[];
+      if(!linked.plans.length)throw new Error("公開中の撮影プランがありません。");
+      renderPlans();renderOptions();
+      const preferred=linked.plans.find(p=>String(p.plan_code).toUpperCase()==="753")||linked.plans[0];
+      await selectPlan(preferred.id,false);
+    }catch(err){
+      console.warn("DPRO SYSTEM LINK fallback",err);
+      window.__DPRO_LINKED_READY=false;
+      setStatus("is-fallback","サンプル表示で確認中",`DPROシステムの接続確認ができないため、画面デザイン用のサンプルを表示しています。${err?.message?` (${err.message})`:""}`);
+    }
+  }
+  boot();
+})();
+</script>
+
 </body>
 </html>
