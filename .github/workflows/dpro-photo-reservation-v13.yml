@@ -1,0 +1,124 @@
+name: DPRO PHOTO Reservation V1.3 Exact Slots
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/dpro-photo-reservation-v13.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-photo-reservation-v13
+  cancel-in-progress: false
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Patch reservation demo and check JavaScript
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+
+          file = Path('index.html')
+          source = file.read_text(encoding='utf-8')
+          s = source
+
+          if "const DEMO_VERSION='STANDARD V1.3';" in s:
+              print('DPRO PHOTO V1.3 is already installed; checking syntax only.')
+          else:
+              if "const DEMO_VERSION='STANDARD V1.2';" not in s:
+                  raise RuntimeError('Unknown source version; leaving original untouched')
+
+              def replace_exact(old, new):
+                  global s
+                  if s.count(old) != 1:
+                      raise RuntimeError('Source mismatch; original preserved: ' + old[:80])
+                  s = s.replace(old, new, 1)
+
+              replace_exact(
+                  "const DEMO_VERSION='STANDARD V1.2';",
+                  "const DEMO_VERSION='STANDARD V1.3';"
+              )
+              replace_exact(
+                  'STANDARD V1.2 SYSTEM LINKED</title>',
+                  'STANDARD V1.3 EXACT AVAILABILITY</title>'
+              )
+
+              replace_exact(
+                  "const tone=x.status==='limited'?'few':'ok',out=[];if(x.first_available_time)out.push([String(x.first_available_time).slice(0,5),tone]);if(x.last_available_time&&String(x.last_available_time).slice(0,5)!==String(x.first_available_time||'').slice(0,5))out.push([String(x.last_available_time).slice(0,5),tone]);return out",
+                  r"const tone=x.status==='limited'?'few':'ok';const exact=Array.isArray(x.available_times)?x.available_times:[x.first_available_time,x.last_available_time];return [...new Set(exact.filter(Boolean).map(t=>String(t).slice(0,5)).filter(t=>/^\d{2}:\d{2}$/.test(t)))].map(t=>[t,tone])"
+              )
+
+              replace_exact(
+                  '''else slots.slice(0,3).forEach(s=>out+=`<button type="button" class="cal-slot ${s.status==='few'?'few-slot':''}" data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}<small>${s.status==='few'?'残り1枠':'予約可'}</small></button>`);out+='</div>'}''',
+                  '''else {slots.slice(0,3).forEach(s=>out+=`<button type="button" class="cal-slot ${s.status==='few'?'few-slot':''}" data-slot-date="${iso(d)}" data-slot-time="${s.time}">${s.time} ${s.status==='few'?'△':'○'}<small>${s.status==='few'?'空きわずか':'予約可'}</small></button>`);if(slots.length>3)out+=`<button type="button" class="calendar-more" data-select-date="${iso(d)}" aria-label="${fullDateLabel(d)}の残り${slots.length-3}枠を表示">ほか${slots.length-3}枠を見る ›</button>`;}out+='</div>'}'''
+              )
+
+              # Daily status 'limited' is not proof of one remaining booking.
+              s = s.replace('残り1枠', '空きわずか')
+
+              replace_exact(
+                  "function priceText(short=false){const p=currentPrice();if(p===null)return short?'料金相談':'料金相談（予約前に確認）';return`¥${p.toLocaleString('ja-JP')}${short?'':'（税込・DPRO設定）'}`}",
+                  "function priceText(short=false){const p=currentPrice();if(p===null)return short?'料金相談':'料金相談（予約前に確認）';if(window.__DPRO_LINKED_READY&&document.querySelector('[data-live-option]:checked'))return`¥${p.toLocaleString('ja-JP')}${short?'〜':'（撮影基本料金・追加オプションは別途確認）'}`;return`¥${p.toLocaleString('ja-JP')}${short?'':'（税込・DPRO設定）'}`}"
+              )
+
+              replace_exact(
+                  "<b>${Number(p)?'+¥'+Number(p).toLocaleString('ja-JP'):'¥0'}</b>",
+                  "<b>${Number(p)?'+¥'+Number(p).toLocaleString('ja-JP'):(window.__DPRO_LINKED_READY?'要相談':'¥0')}</b>"
+              )
+
+              replace_exact('</style>', '''/* DPRO PHOTO V1.3 / Calendar visibility */
+          .date-number .date-select{font-size:19px;font-weight:900;min-width:34px;min-height:34px;border-radius:8px}
+          .calendar-more{display:block;width:100%;margin-top:5px;padding:7px 4px;border:1px solid #b6cbb4;border-radius:8px;background:#edf5e9;color:#315c38;font-weight:800;font-size:12px;cursor:pointer}
+          .calendar-more:hover{background:#dfeeda}
+          .calendar-more:focus-visible,.date-number .date-select:focus-visible{outline:3px solid #295d42;outline-offset:2px}
+          </style>''')
+
+          scripts = re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', s, re.S)
+          if len(scripts) != 2:
+              raise RuntimeError(f'Unexpected script count: {len(scripts)}')
+          for i, script in enumerate(scripts, start=1):
+              check = subprocess.run(['node', '--check'], input=script, text=True, capture_output=True)
+              if check.returncode:
+                  raise RuntimeError(f'Script {i}: ' + check.stderr)
+
+          required = [
+              "const DEMO_VERSION='STANDARD V1.3';",
+              'Array.isArray(x.available_times)',
+              'calendar-more',
+              "window.__DPRO_LINKED_READY",
+              "function renderCalendar()",
+              "function validateForm()",
+          ]
+          for needle in required:
+              if needle not in s:
+                  raise RuntimeError('QA gate failed: ' + needle)
+          if s != source:
+              file.write_text(s, encoding='utf-8')
+          print('PASS: DPRO PHOTO V1.3 static and JavaScript syntax QA')
+          PY
+
+      - name: Commit source changes
+        shell: bash
+        run: |
+          if git diff --quiet -- index.html; then
+            echo 'Already updated, no changes needed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'DPRO PHOTO V1.3 exact availability and reservation clarity'
+          git push
